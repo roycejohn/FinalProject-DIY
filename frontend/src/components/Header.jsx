@@ -1,8 +1,5 @@
-
-
-// import logo from '../assets/';
 import avatar from '../assets/avatar.png';
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { useState } from 'react';
 import { SearchIcon } from '@heroicons/react/outline';
 
@@ -22,7 +19,6 @@ const Header = () => {
           <Link to='/'>
             <div className="logo">
               DIYHub
-              {/* <img className="w-28 h-28 cursor-pointer" src={logo} alt="Logo" /> */}
             </div>
           </Link>
           <div className="flex-grow mx-28 relative">
@@ -76,10 +72,7 @@ const Header = () => {
           </div>
         )}
       </header>
-
-
     </>
-    
   );
 };
 
