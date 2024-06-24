@@ -6,4 +6,202 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box ;
+  color: #171818;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
+
+
+/* profile-page starts*/
+
+.profile {
+  padding: 40px 80px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.profile-content {
+  display: flex;
+  align-items: flex-start;
+}
+
+.left-section {
+  margin-right: 80px;
+}
+
+.right-section {
+  flex: 1;
+}
+
+.profile-picture {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end; 
+  gap: 10px; 
+  margin-top: 10px;
+}
+
+.profile-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: lighter;
+  color: #171818;
+  background-color: #ffffff;
+  text-decoration: none;
+  border: 1px solid #171818;
+  border-radius: 12px;
+  transition: background-color 0.3s;
+}
+
+.profile-button img {
+  width: 12px;
+  height: 12px;
+  margin-right: 5px; 
+}
+
+.profile-button span {
+  display: inline-block; 
+}
+
+
+.profile-button:hover {
+  background-color: #f0f0f0;
+}
+
+
+.user-name {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.user-join-date {
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+.profile-description {
+  margin-top: 20px;
+  text-align: left;
+  font-size: 16px;
+}
+
+.projects-section {
+  margin-top: 40px;
+  text-align: left;
+}
+
+.projects-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.project-card {
+  width: 200px;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.project-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.project-card p {
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+.see-more-link {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 40px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #171818;
+  text-decoration: none;
+  border-radius: 12px;
+  transition: background-color 0.3s;
+}
+
+.see-more-link:hover {
+  background-color: #ffffff;
+  color: #171818;
+}
+
+/* profile-page ends */
+
+
+/* footer starts */
+
+.footer {
+  background-color: #343434;
+  color: #ffffff;
+  padding: 80px 80px;
+  margin-top:20px;
+  text-align: center;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.footer-left,
+.footer-center,
+.footer-right {
+  display: flex;
+  align-items: center;
+}
+
+.footer-logo {
+  width: 60px;
+  height: 60px;
+  margin-right: 20px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.footer-link {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}
+
+.social-media-icon {
+  width: 48px;
+  height: 48px;
+  margin-left: 10px;
+}
+
+.footer-text {
+  font-size: 14px;
+  margin-top: 8px;
+  align-self: center;
+}
+
+
+/* footer ends */
