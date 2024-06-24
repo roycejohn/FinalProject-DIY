@@ -23,9 +23,9 @@ const Header = () => {
             <input
               type="text"
               placeholder="Search..."
-              className="w-full px-4 py-2 rounded-full border border-gray-700 focus:outline-none focus:ring focus:border-blue-300 pl-10"
+              className="w-full px-4 py-2 rounded-xl border border-gray-700 focus:outline-none focus:ring focus:border-blue-300 pl-10"
             />
-            <SearchIcon className="h-5 w-5 text-gray-700 absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none" />
+            <SearchIcon className="h-4 w-4 text-gray-700 absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none" />
           </div>
           <nav className="hidden md:flex space-x-4 ml-auto">
             <a href="/" className="hover:text-gray-700">Home</a>
@@ -34,13 +34,12 @@ const Header = () => {
             <a href="/about" className="hover:text-gray-700">Community</a>
           </nav>
 
-          <div className="hidden md:flex items-center space-x-2 px-4">
-            <button className="flex items-center space-x-1 bg-white border border-gray-700 focus:outline-none px-3 py-1 rounded-xl">
-              <img src={PlusIcon} alt="Create" className="w-4 h-4" />
-              <span>Create</span>
+          <div className="hidden md:flex items-center space-x-4 px-4  text-gray-700">
+            <button className="flex items-center space-x-1 bg-white border border-gray-700 focus:outline-none px-2 py-1 rounded-xl">
+              <img src={PlusIcon} alt="Create" className="w-4 h-4"/>
+              <span className="ml-6 pr-4">Create</span> 
             </button>
 
-            {/* Link to profile page */}
             <Link to="/profile">
               <img src={ProfileIcon} alt="Profile" className="w-8 h-8 mr-4 cursor-pointer hover:shadow-lg" />
             </Link>
