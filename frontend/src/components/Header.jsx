@@ -32,9 +32,10 @@ const Header = () => {
           <nav className="hidden md:flex space-x-4 ml-auto">
             <a href="/" className="hover:text-gray-100">Home</a>
             <a href="/projects" className="hover:text-gray-100">Projects</a>
-            <a href="/community" className="hover:text-gray-100">Community</a>
+            <Link to="/community" className="hover:text-gray-100">Community</Link>
             <a href="/about" className="hover:text-gray-100">About</a>
             <a href="/login" className="hover:text-gray-100">Login</a>   {/* added will delete later */}
+            <a href="/signup" className="hover:text-gray-100">Signup</a>   {/* added will delete later */}
           </nav> 
 
           <div className="hidden md:flex items-center px-5">
@@ -59,9 +60,12 @@ const Header = () => {
             <div className="nav-list">
               <a href="/" className="block py-2 px-4 font-bold hover:bg-gray-500">Home</a>
               <a href="/projects" className="block py-2 px-4 font-bold hover:bg-gray-500">Projects</a>
-              <a href="/community" className="block py-2 px-4 font-bold hover:bg-gray-500">Community</a>
+              <Link to="/community" className="hover:text-gray-100">Community</Link>
 
               <a href="/about" className="block py-2 px-4 font-bold hover:bg-gray-500">About</a>
+              <a href="/login" className="block py-2 px-4 font-bold hover:bg-gray-500">Login</a>
+              <a href="/signup" className="block py-2 px-4 font-bold hover:bg-gray-500">Signup</a>
+              
             </div>
             <div className="sign-list flex justify-center mt-4">
               <img
