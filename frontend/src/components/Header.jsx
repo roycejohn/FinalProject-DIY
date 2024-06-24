@@ -34,7 +34,8 @@ const Header = () => {
             <a href="/projects" className="hover:text-gray-100">Projects</a>
             <a href="/community" className="hover:text-gray-100">Community</a>
             <a href="/about" className="hover:text-gray-100">About</a>
-          </nav>
+            <a href="/login" className="hover:text-gray-100">Login</a>   {/* added will delete later */}
+          </nav> 
 
           <div className="hidden md:flex items-center px-5">
             <img

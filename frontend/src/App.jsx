@@ -8,6 +8,7 @@ import Footer from './components/Footer'
 import Header from './components/Header.jsx'
 import Projects from './pages/Projects.jsx'
 import Community from './pages/Community.jsx'
+import Login from './components/Login.jsx'
 
 function App() {
  
@@ -22,6 +23,8 @@ function App() {
           <Route path="/community" element = {<Community/> } />
           <Route path="/about" element = {<About />} />
           <Route path="/profile" element = {<Profile />} />
+          <Route path="/login" element = {<Login />} />
+
         </Routes>
       </div>
       <Footer />
