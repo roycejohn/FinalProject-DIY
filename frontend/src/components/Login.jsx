@@ -120,7 +120,7 @@ const Login = ({ setUser }) => {
           Login
         </button>
 
-        <Link  to="/signup" className="block text-center text-2xl underline mt-6 underline-offset-4 mt-10 mb-32">
+        <Link  to="/register" className="block text-center text-2xl underline mt-6 underline-offset-4 mt-10 mb-32">
           NOT A MEMBER? JOIN HERE
         </Link>
 

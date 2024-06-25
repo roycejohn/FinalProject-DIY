@@ -10,7 +10,7 @@ import Header from './components/Header.jsx'
 // import Projects from './pages/Projects.jsx'
 import Community from './pages/Community.jsx'
 import Login from './components/Login.jsx'
-import Signup from './components/Signup.jsx'
+import Register from './components/Register.jsx'
 import ProjectList from './pages/ProjectList.jsx'
 
 function App() {
@@ -43,7 +43,7 @@ function App() {
           <Route path="/about" element = {<About />} />
           <Route path="/profile" element = {user ? <Profile /> : <Navigate to="/login" />} />
           <Route path="/login" element = {<Login setUser={setUser} />} />
-          <Route path="/signup" element = {<Signup setUser={setUser} />} />
+          <Route path="/register" element = {<Register setUser={setUser} />} />
 
         </Routes>
       </div>

@@ -48,7 +48,7 @@ const Header = ({user,setUser}) => {
             {!user ? (
               <>
                 <Link to="/login" className="hover:text-gray-100">Login</Link>
-                <Link to="/signup" className="hover:text-gray-100">Register</Link>
+                <Link to="/register" className="hover:text-gray-100">Register</Link>
               </>
             ) : (
               <>
@@ -86,7 +86,7 @@ const Header = ({user,setUser}) => {
 
              <Link to="/about" className="block py-2 px-4 font-bold hover:bg-gray-500">About</Link>
              <Link to="/login" className="block py-2 px-4 font-bold hover:bg-gray-500">Login</Link>
-             <Link to="/signup" className="block py-2 px-4 font-bold hover:bg-gray-500">Signup</Link>
+             <Link to="/register" className="block py-2 px-4 font-bold hover:bg-gray-500">Register</Link>
               
             </div>
             <div className="sign-list flex justify-center mt-4">

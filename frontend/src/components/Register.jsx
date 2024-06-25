@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Signup = ({ user, setUser }) => {
+const Register = ({ user, setUser }) => {
   const [formValues, setFormValues] = useState({
     username: "",
     firstName: "",
@@ -28,7 +28,7 @@ const Signup = ({ user, setUser }) => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:8000/users/signup", {
+      const response = await fetch("http://localhost:8000/users/Register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formValues),
@@ -186,4 +186,4 @@ const Signup = ({ user, setUser }) => {
   );
 };
 
-export default Signup;
+export default Register;
