@@ -7,10 +7,11 @@ import Home from './pages/Home'
 import Profile from './pages/Profile'
 import Footer from './components/Footer'
 import Header from './components/Header.jsx'
-import Projects from './pages/Projects.jsx'
+// import Projects from './pages/Projects.jsx'
 import Community from './pages/Community.jsx'
 import Login from './components/Login.jsx'
 import Signup from './components/Signup.jsx'
+import ProjectList from './pages/ProjectList.jsx'
 
 function App() {
  
@@ -24,6 +25,9 @@ function App() {
           <Route path="/" element = {<Home />} />
           <Route path="/projects" element = {<Projects />} />
           <Route path="/community" element = {user ? <Community/> : <Navigate to="/login" />} />
+          {/* <Route path="/projects" element = {<Projects />} /> */}
+          <Route path="/projects" element = {<ProjectList />} />
+          <Route path="/community" element = {<Community/> } />
           <Route path="/about" element = {<About />} />
           <Route path="/profile" element = {<Profile />} />
           <Route path="/login" element = {<Login setUser={setUser} />} />
