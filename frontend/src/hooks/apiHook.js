@@ -14,7 +14,7 @@ export const getProjects = async () => {
 
 export const createProject = async (formData) => {
   try {
-    const response = await axios.post(API_URL, formData, {
+    const response = await axios.post(`${API_URL}/create-project`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }

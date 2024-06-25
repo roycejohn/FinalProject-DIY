@@ -192,7 +192,7 @@ const ProjectForm = () => {
         </button>
         <button
           type="submit"
-          className="px-4 w-2/6 py-2 bg-blue-400 text-white rounded"
+          className="px-4 w-2/6 py-2 bg-gray-800 text-white rounded"
         >
           Publish
         </button>
