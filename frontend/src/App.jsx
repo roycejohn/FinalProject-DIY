@@ -23,13 +23,11 @@ function App() {
       <div>
         <Routes>
           <Route path="/" element = {<Home />} />
-          <Route path="/projects" element = {<Projects />} />
           <Route path="/community" element = {user ? <Community/> : <Navigate to="/login" />} />
           {/* <Route path="/projects" element = {<Projects />} /> */}
           <Route path="/projects" element = {<ProjectList />} />
-          <Route path="/community" element = {<Community/> } />
           <Route path="/about" element = {<About />} />
-          <Route path="/profile" element = {<Profile />} />
+          <Route path="/profile" element = {user ? <Profile /> : <Navigate to="/login" />} />
           <Route path="/login" element = {<Login setUser={setUser} />} />
           <Route path="/signup" element = {<Signup setUser={setUser} />} />
 
