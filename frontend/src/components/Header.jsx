@@ -7,7 +7,7 @@ import PlusIcon from '../assets/plus-icon.svg';
 import ProjectForm from '../pages/ProjectForm';
 
 
-const Header = () => {
+const Header = ({user,setUser}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -17,6 +17,11 @@ const Header = () => {
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token")
+    setUser(false);
+  };  // Logout added
 
 
   return (
@@ -35,16 +40,19 @@ const Header = () => {
             <SearchIcon className="h-4 w-4 text-gray-700 absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none" />
           </div>
           <nav className="hidden md:flex space-x-4 ml-auto">
-            <a href="/" className="hover:text-gray-100">Home</a>
-            <a href="/projects" className="hover:text-gray-100">Projects</a>
+           <Link to="/" className="hover:text-gray-100">Home</Link>
+           <Link to="/projects" className="hover:text-gray-100">Projects</Link>
             <Link to="/community" className="hover:text-gray-100">Community</Link>
-            <a href="/about" className="hover:text-gray-100">About</a>
-            <a href="/login" className="hover:text-gray-100">Login</a>   {/* added will delete later */}
-            <a href="/signup" className="hover:text-gray-100">Signup</a>   {/* added will delete later */}
-          </nav> 
-
-          <div className="hidden md:flex items-center space-x-4 px-4  text-gray-700">
-            <button onClick={toggleModal} className="flex items-center space-x-1 bg-white border border-gray-700 focus:outline-none px-2 py-1 rounded-xl">
+           <Link to="/about" className="hover:text-gray-100">About</Link>
+    {/* added to check if no user */}
+            {!user ? (
+              <>
+                <Link to="/login" className="hover:text-gray-100">Login</Link>
+                <Link to="/signup" className="hover:text-gray-100">Register</Link>
+              </>
+            ) : (
+              <>
+              <button onClick={toggleModal} className="flex items-center space-x-1 bg-white border border-gray-700 focus:outline-none px-2 py-1 rounded-xl">
               <img src={PlusIcon} alt="Create" className="w-4 h-4"/>
               <span className="ml-6 pr-4">Create</span> 
             </button>
@@ -52,6 +60,12 @@ const Header = () => {
             <Link to="/profile">
               <img src={ProfileIcon} alt="Profile" className="w-8 h-8 cursor-pointer hover:shadow-lg" />
             </Link>
+              <button onClick={handleLogout} className="ml-4 bg-red-600 text-white px-2 py-1 rounded">Logout</button>
+            </> 
+      
+            )}   
+          </nav> 
+        
           </div>
 
           <div className="md:hidden mx-6">
@@ -61,18 +75,18 @@ const Header = () => {
               </svg>
             </button>
           </div>
-        </div>
+    
 
         {isMenuOpen && (
           <div className="md:hidden py-2 px-4">
             <div className="nav-list">
-              <a href="/" className="block py-2 px-4 font-bold hover:bg-gray-500">Home</a>
-              <a href="/projects" className="block py-2 px-4 font-bold hover:bg-gray-500">Projects</a>
+             <Link to="/" className="block py-2 px-4 font-bold hover:bg-gray-500">Home</Link>
+             <Link to="/projects" className="block py-2 px-4 font-bold hover:bg-gray-500">Projects</Link>
               <Link to="/community" className="hover:text-gray-100">Community</Link>
 
-              <a href="/about" className="block py-2 px-4 font-bold hover:bg-gray-500">About</a>
-              <a href="/login" className="block py-2 px-4 font-bold hover:bg-gray-500">Login</a>
-              <a href="/signup" className="block py-2 px-4 font-bold hover:bg-gray-500">Signup</a>
+             <Link to="/about" className="block py-2 px-4 font-bold hover:bg-gray-500">About</Link>
+             <Link to="/login" className="block py-2 px-4 font-bold hover:bg-gray-500">Login</Link>
+             <Link to="/signup" className="block py-2 px-4 font-bold hover:bg-gray-500">Signup</Link>
               
             </div>
             <div className="sign-list flex justify-center mt-4">

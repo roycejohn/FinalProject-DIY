@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Signup = ({ user, setUser }) => {
   const [formValues, setFormValues] = useState({
@@ -11,6 +12,7 @@ const Signup = ({ user, setUser }) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const handleInput = (e) => {
     //console.log(e.target.name);
@@ -38,8 +40,9 @@ const Signup = ({ user, setUser }) => {
       localStorage.setItem("token", JSON.stringify(data.token));
 
       setUser(true);
-      console.log(user);
-      console.log(data);
+      navigate("/")   // navigate to homepage
+     // console.log(user);
+    // console.log(data);
     } catch (error) {
       setError(error.message);
     } finally {

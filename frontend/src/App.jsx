@@ -1,7 +1,7 @@
 
 import './App.css'
 import { Routes,Route, Navigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import About from './pages/About'
 import Home from './pages/Home'
 import Profile from './pages/Profile'
@@ -15,17 +15,31 @@ import ProjectList from './pages/ProjectList.jsx'
 
 function App() {
  
-  const [user, setUser] = useState(false) 
+  const [user, setUser] = useState(null) 
+  const [ loading, setLoading ] = useState(true)
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) { 
+      setUser(true) } 
+      else {
+        setUser(false) }
+      setLoading(false)
+  }, []); 
+
+  if(loading) {
+    return <div>Loading..</div>
+  }
 
   return (
     <div>
-      <Header />
+      <Header user={user} setUser={setUser} />
       <div>
         <Routes>
           <Route path="/" element = {<Home />} />
-          <Route path="/community" element = {user ? <Community/> : <Navigate to="/login" />} />
           {/* <Route path="/projects" element = {<Projects />} /> */}
           <Route path="/projects" element = {<ProjectList />} />
+          <Route path="/community" element = {user ? <Community/> : <Navigate to="/login" />} />
           <Route path="/about" element = {<About />} />
           <Route path="/profile" element = {user ? <Profile /> : <Navigate to="/login" />} />
           <Route path="/login" element = {<Login setUser={setUser} />} />

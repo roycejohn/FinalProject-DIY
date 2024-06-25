@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = ({ setUser }) => {
   // useState ---------------------------------------
@@ -10,6 +10,7 @@ const Login = ({ setUser }) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate()
 
   // HANDLERS --------------------------------------
   const handleInput = (e) => {
@@ -21,6 +22,11 @@ const Login = ({ setUser }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if(!formValues.username || !formValues.password ) {
+      setError("Both fields are reqired.")
+      return;
+    }
 
     setError(null);
     setLoading(true);
@@ -38,6 +44,7 @@ const Login = ({ setUser }) => {
       localStorage.setItem("token", JSON.stringify(data.token));
 
       setUser(true);
+      navigate("/")  // navigate to home after user is logged
       // console.log(user)
       console.log(data);
     } catch (error) {
@@ -113,7 +120,7 @@ const Login = ({ setUser }) => {
           Login
         </button>
 
-        <Link className="block text-center text-2xl underline mt-6 underline-offset-4 mt-10 mb-32">
+        <Link  to="/signup" className="block text-center text-2xl underline mt-6 underline-offset-4 mt-10 mb-32">
           NOT A MEMBER? JOIN HERE
         </Link>
 
