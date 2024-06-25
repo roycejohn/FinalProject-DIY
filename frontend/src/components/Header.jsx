@@ -35,7 +35,7 @@ const Header = () => {
           </nav>
 
           <div className="hidden md:flex items-center space-x-4 px-4  text-gray-700">
-            <button className="flex items-center space-x-1 bg-white border border-gray-700 focus:outline-none px-2 py-1 rounded-xl">
+            <button className="flex items-center space-x-1 bg-white border border-gray-700 focus:outline-none px-2 py-1 rounded-xl;">
               <img src={PlusIcon} alt="Create" className="w-4 h-4"/>
               <span className="ml-6 pr-4">Create</span> 
             </button>

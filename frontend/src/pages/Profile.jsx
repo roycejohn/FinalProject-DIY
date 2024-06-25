@@ -4,6 +4,10 @@ import ProfilePicture from '../assets/pp.png';
 import InboxIcon from '../assets/inbox-icon.svg';
 import EditIcon from '../assets/edit-icon.svg';
 import SettingsIcon from '../assets/settings-icon.svg';
+import ProjectImage1 from '../assets/project1.png';
+import ProjectImage2 from '../assets/project2.png';
+import ProjectImage3 from '../assets/project3.png';
+import ProjectImage4 from '../assets/project4.png';
 
 function Profile() {
   return (
@@ -46,12 +50,34 @@ function Profile() {
       <div className="projects-section">
         <h2>My Projects</h2>
         <div className="projects-grid">
-          {/* Projects Grid */}
+          <div className="project-card">
+            <img src={ProjectImage1} alt="Project 1" />
+            <h3>Project One</h3>
+            <p>A brief description of project one. This project focuses on sustainable living practices.</p>
+          </div>
+          <div className="project-card">
+            <img src={ProjectImage2} alt="Project 2" />
+            <h3>Project Two</h3>
+            <p>A brief description of project two. This project promotes eco-friendly habits.</p>
+          </div>
+          <div className="project-card">
+            <img src={ProjectImage3} alt="Project 3" />
+            <h3>Project Three</h3>
+            <p>A brief description of project three. This project involves community recycling efforts.</p>
+          </div>
+          <div className="project-card">
+            <img src={ProjectImage4} alt="Project 4" />
+            <h3>Project Four</h3>
+            <p>A brief description of project three. This project involves community recycling efforts.</p>
+          </div>
         </div>
-        <a href="/projects" className="see-more-link">See More</a>
+        <div className="see-more-container">
+        <a href="/seemoreprojects" className="see-more-link">See more projects</a>
+        </div>
       </div>
     </div>
   );
 }
 
 export default Profile;
+
