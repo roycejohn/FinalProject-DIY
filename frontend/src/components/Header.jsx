@@ -4,13 +4,20 @@ import { SearchIcon } from '@heroicons/react/outline';
 import NavbarLogo from '../assets/navbar-logo.svg';
 import ProfileIcon from '../assets/profile-icon.svg'; 
 import PlusIcon from '../assets/plus-icon.svg'; 
+import ProjectForm from '../pages/ProjectForm';
+
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
 
   return (
     <>
@@ -30,8 +37,8 @@ const Header = () => {
           <nav className="hidden md:flex space-x-6 mr-8">
             <a href="/" className="hover:text-gray-700">Home</a>
             <a href="/projects" className="hover:text-gray-700">Projects</a>
-            <a href="/community" className="hover:text-gray-700">About</a>
-            <a href="/about" className="hover:text-gray-700">Community</a>
+            <a href="/about" className="hover:text-gray-700">About</a>
+            <a href="/community" className="hover:text-gray-700">Community</a>
           </nav>
 
           <div className="hidden md:flex items-center space-x-4 px-4 text-gray-700">
@@ -59,13 +66,24 @@ const Header = () => {
             <div className="nav-list">
               <a href="/" className="block py-2 px-4 font-bold hover:bg-gray-700">Home</a>
               <a href="/projects" className="block py-2 px-4 font-bold hover:bg-gray-700">Projects</a>
-              <a href="/community" className="block py-2 px-4 font-bold hover:bg-gray-700">About</a>
-              <a href="/about" className="block py-2 px-4 font-bold hover:bg-gray-700">Community</a>
+              <a href="/about" className="block py-2 px-4 font-bold hover:bg-gray-700">About</a>
+              <a href="/community" className="block py-2 px-4 font-bold hover:bg-gray-700">Community</a>
             </div>
             <div className="sign-list flex justify-center mt-4">
               <Link to="/profile">
                 <img src={ProfileIcon} alt="Profile" className="w-10 h-10 rounded-full cursor-pointer hover:shadow-lg" />
               </Link>
+            </div>
+          </div>
+        )}
+        {isModalOpen && (
+          <div className="fixed inset-0 flex items-center justify-center z-50">
+            <div className="fixed inset-0 bg-black opacity-50" onClick={toggleModal}></div>
+            <div className="relative bg-white p-8 rounded-lg shadow-lg z-10 w-full max-w-6xl h-3/4 overflow-auto">
+              <button onClick={toggleModal} className="absolute top-2 right-2 text-gray-600 hover:text-gray-900">
+                &times;
+              </button>
+              <ProjectForm />
             </div>
           </div>
         )}

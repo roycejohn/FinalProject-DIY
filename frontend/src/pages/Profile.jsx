@@ -1,4 +1,4 @@
-import React from 'react';
+
 import '../index.css';
 import ProfilePicture from '../assets/pp.png';
 import InboxIcon from '../assets/inbox-icon.svg';
