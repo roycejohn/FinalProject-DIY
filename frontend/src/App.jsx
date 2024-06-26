@@ -9,6 +9,7 @@ import Header from './components/Header.jsx'
 // import Projects from './pages/Projects.jsx'
 import Community from './pages/Community.jsx'
 import ProjectList from './pages/ProjectList.jsx'
+import ProjectDetail from './pages/ProjectDetail.jsx'
 
 function App() {
  
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element = {<Home />} />
           {/* <Route path="/projects" element = {<Projects />} /> */}
           <Route path="/projects" element = {<ProjectList />} />
+          <Route path="/projects/:projectId" element= {<ProjectDetail />} />
           <Route path="/community" element = {<Community/> } />
           <Route path="/about" element = {<About />} />
           <Route path="/profile" element = {<Profile />} />

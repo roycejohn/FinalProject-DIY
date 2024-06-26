@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/projects';
+const API_URL = 'http://localhost:8000/api/projects';
 
 export const getProjects = async () => {
   try {
@@ -10,6 +10,11 @@ export const getProjects = async () => {
     console.error('Error fetching projects:', error);
     throw error;
   }
+};
+
+export const getProjectById = async (projectId) => {
+  const response = await axios.get(`${API_URL}/${projectId}`);
+  return response.data;
 };
 
 export const createProject = async (formData) => {
