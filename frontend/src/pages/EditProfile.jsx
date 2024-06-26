@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 const EditProfile = ({ user, setUser }) => {
 
   const [formValues, setFormValues] = useState({
+    username: user.username,
     firstName: user.firstName,
     lastName: user.lastName,
     email: user.email,
@@ -28,8 +29,9 @@ const EditProfile = ({ user, setUser }) => {
     setLoading(true);
 
     try {
-        const { firstName, lastName, email, password } = formValues;
+        const { username, firstName, lastName, email, password } = formValues;
         const updatedUser = {
+            username,
             firstName,
             lastName,
             email,
@@ -61,6 +63,17 @@ const EditProfile = ({ user, setUser }) => {
   return (
     <form onSubmit={handleSubmit} className="max-w-lg mx-auto mt-24 p-6 bg-white">
       <h2 className="text-4xl font-bold mb-2 text-center">Edit Profile</h2>
+      <div className="mb-4">
+        <label htmlFor="username" className="block text-gray-700 font-medium mb-2">Username</label>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          value={formValues.username}
+          onChange={handleInput}
+          className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
+        />
+      </div>
       <div className="mb-4">
         <label htmlFor="firstName" className="block text-gray-700 font-medium mb-2">First Name</label>
         <input
