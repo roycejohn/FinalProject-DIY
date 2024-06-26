@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Register = ({ user, setUser }) => {
+const Register = ({  setUser }) => {
   const [formValues, setFormValues] = useState({
     username: "",
     firstName: "",
@@ -28,7 +28,7 @@ const Register = ({ user, setUser }) => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:8000/users/Register", {
+      const response = await fetch("http://localhost:8000/users/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formValues),
@@ -38,9 +38,12 @@ const Register = ({ user, setUser }) => {
 
       const data = await response.json();
       localStorage.setItem("token", JSON.stringify(data.token));
-
-      setUser(true);
-      navigate("/")   // navigate to homepage
+      localStorage.setItem("token", JSON.stringify(data.user));  
+ 
+      setUser(data.user);
+        // update local storage
+       // localStorage.setItem("user", JSON.stringify(data));
+      navigate("/profile")   // navigate to homepage
      // console.log(user);
     // console.log(data);
     } catch (error) {
@@ -56,7 +59,9 @@ const Register = ({ user, setUser }) => {
 
   return (
     <>
-      <div className="max-w-2xl mx-auto mt-24  p-6 bg-white ">
+    <div className=" h-screen ">
+
+    <div className="max-w-2xl mx-auto mt-24  p-6 bg-white ">
         <h2 className="text-4xl font-bold mb-2 text-center">
           Create Your Account
         </h2>
@@ -182,6 +187,8 @@ const Register = ({ user, setUser }) => {
 
         {error && <p className="text-red-500 mt-4">{error}</p>}
       </form>
+    </div>
+      
     </>
   );
 };
