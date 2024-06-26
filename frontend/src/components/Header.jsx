@@ -28,7 +28,7 @@ const Header = () => {
   return (
     <>
       <header className="relative">
-        <div className="container mx-auto max-w-screen-lg px-2 flex justify-between items-center">
+        <div className="container mx-auto max-w-screen-lg flex justify-between items-center">
           <Link to='/'>
             <img src={NavbarLogo} alt="Logo" className="w-24 h-24" />
           </Link>
@@ -44,8 +44,8 @@ const Header = () => {
           <nav className="hidden md:flex space-x-6 mr-8">
             <a href="/" className="hover:text-gray-600">Home</a>
             <a href="/projects" className="hover:text-gray-600">Projects</a>
-            <a href="/community" className="hover:text-gray-600">About</a>
-            <a href="/about" className="hover:text-gray-600">Community</a>
+            <a href="/about" className="hover:text-gray-600">About</a>
+            <a href="/community" className="hover:text-gray-600">Community</a>
           </nav>
 
           <div className="hidden md:flex items-center space-x-4 px-4 text-gray-700">
@@ -58,7 +58,7 @@ const Header = () => {
               <img 
                 src={ProfileIcon} 
                 alt="Profile" 
-                className="w-8 h-8 mr-8 cursor-pointer hover:shadow-lg" 
+                className="w-8 h-8 cursor-pointer hover:shadow-lg" 
                 onClick={toggleProfileMenu}
               />
               {isProfileMenuOpen && (
