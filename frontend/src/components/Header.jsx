@@ -8,7 +8,7 @@ import PlusIcon from '../assets/plus-icon.svg';
 import ProjectForm from '../pages/ProjectForm';
 
 
-const Header = () => {
+const Header = ({user,setUser}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
@@ -24,6 +24,11 @@ const Header = () => {
   const toggleProfileMenu = () => {
     setIsProfileMenuOpen(!isProfileMenuOpen);
   };
+  const handleLogout = () => {
+    localStorage.removeItem("token")
+    setUser(false);
+  };  // Logout added
+
 
   return (
     <>
@@ -78,15 +83,19 @@ const Header = () => {
               </svg>
             </button>
           </div>
-        </div>
+    
 
         {isMenuOpen && (
           <div className="md:hidden py-2 px-4">
             <div className="nav-list">
-              <a href="/" className="block py-2 px-4 font-bold hover:bg-gray-700">Home</a>
-              <a href="/projects" className="block py-2 px-4 font-bold hover:bg-gray-700">Projects</a>
-              <a href="/about" className="block py-2 px-4 font-bold hover:bg-gray-700">About</a>
-              <a href="/community" className="block py-2 px-4 font-bold hover:bg-gray-700">Community</a>
+             <Link to="/" className="block py-2 px-4 font-bold hover:bg-gray-500">Home</Link>
+             <Link to="/projects" className="block py-2 px-4 font-bold hover:bg-gray-500">Projects</Link>
+              <Link to="/community" className="hover:text-gray-100">Community</Link>
+
+             <Link to="/about" className="block py-2 px-4 font-bold hover:bg-gray-500">About</Link>
+             <Link to="/login" className="block py-2 px-4 font-bold hover:bg-gray-500">Login</Link>
+             <Link to="/register" className="block py-2 px-4 font-bold hover:bg-gray-500">Register</Link>
+              
             </div>
             <div className="sign-list flex justify-center mt-2">
               <Link to="/profile">
