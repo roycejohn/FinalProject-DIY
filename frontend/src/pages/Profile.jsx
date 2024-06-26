@@ -1,5 +1,3 @@
-
-import '../index.css';
 import ProfilePicture from '../assets/pp.png';
 import InboxIcon from '../assets/inbox-icon.svg';
 import EditIcon from '../assets/edit-icon.svg';
@@ -24,15 +22,15 @@ function Profile() {
           <div className="profile-buttons">
             <button className="profile-button">
               <img src={InboxIcon} alt="Inbox" className="icon" style={{ width: '12px', height: '12px' }} />
-              <span>See inbox</span>
+              <span>My Inbox</span>
             </button>
             <button className="profile-button">
               <img src={EditIcon} alt="Edit" className="icon" style={{ width: '12px', height: '12px' }} />
-              <span>Edit profile</span>
+              <span>Edit Profile</span>
             </button>
             <button className="profile-button">
               <img src={SettingsIcon} alt="Settings" className="icon" style={{ width: '12px', height: '12px' }} />
-              <span>Go to settings</span>
+              <span>My Settings</span>
             </button>
           </div>
           <div className="user-name">
