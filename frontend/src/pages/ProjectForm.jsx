@@ -7,6 +7,7 @@ const ProjectForm = () => {
     title: "",
     description: "",
     materials: "",
+    category: "General",
     steps: [{ title: "", description: "", images: [] }],
   });
 
@@ -46,6 +47,7 @@ const ProjectForm = () => {
     formData.append("title", formState.title);
     formData.append("description", formState.description);
     formData.append("materials", formState.materials);
+    formData.append("category", formState.category);
     formData.append("coverImage", formState.coverImage);
 
     formState.steps.forEach((step, index) => {
@@ -64,6 +66,7 @@ const ProjectForm = () => {
         title: "",
         description: "",
         materials: "",
+        category: "General",
         steps: [{ title: "", description: "", images: [] }],
       });
     } catch (error) {
@@ -111,7 +114,29 @@ const ProjectForm = () => {
               className="w-full p-2 border border-gray-300 rounded"
             />
           </div>
+          
           <div className="p-4">
+            <label
+              htmlFor="category"
+              className="block text-lg font-medium mb-2"
+            >
+              Project Category
+            </label>
+            <select
+              id="category"
+              name="category"
+              value={formState.category}
+              onChange={handleInputChange}
+              className="w-full p-2 border border-gray-300 rounded"
+            >
+              <option value="General">General</option>
+              <option value="Workshop">Workshop</option>
+              <option value="Cooking">Cooking</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div className="mb-6 w-full">
             <label
               htmlFor="description"
               className="block text-lg font-medium mb-2"
@@ -127,8 +152,6 @@ const ProjectForm = () => {
               className="w-full p-2 border border-gray-300 rounded"
             ></textarea>
           </div>
-        </div>
-      </div>
       <div className="mb-6 w-full">
         <label
           htmlFor="materials"

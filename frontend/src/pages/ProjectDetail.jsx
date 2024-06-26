@@ -1,12 +1,16 @@
-
-
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getProjectById } from '../hooks/apiHook.js';
+import Modal from 'react-modal';
+
+Modal.setAppElement('#root');
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
   const [project, setProject] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalImageIndex, setModalImageIndex] = useState(0);
+  const [currentImages, setCurrentImages] = useState([]);
 
   useEffect(() => {
     const fetchProject = async () => {
@@ -19,6 +23,26 @@ const ProjectDetail = () => {
     };
     fetchProject();
   }, [projectId]);
+
+  const openModal = (images, index) => {
+    setCurrentImages(images);
+    setModalImageIndex(index);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setModalImageIndex(0);
+    setCurrentImages([]);
+  };
+
+  const nextImage = () => {
+    setModalImageIndex((prevIndex) => (prevIndex + 1) % currentImages.length);
+  };
+
+  const prevImage = () => {
+    setModalImageIndex((prevIndex) => (prevIndex - 1 + currentImages.length) % currentImages.length);
+  };
 
   if (!project) {
     return <div>Loading...</div>;
@@ -46,7 +70,8 @@ const ProjectDetail = () => {
                     key={imgIndex}
                     src={image}
                     alt={`Step ${index + 1} Image ${imgIndex + 1}`}
-                    className="w-full h-32 object-cover rounded-lg"
+                    className="w-full h-32 object-cover rounded-lg cursor-pointer"
+                    onClick={() => openModal(step.images, imgIndex)}
                   />
                 ))}
               </div>
@@ -54,6 +79,22 @@ const ProjectDetail = () => {
           </div>
         ))}
       </div>
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        contentLabel="Image Modal"
+        className="modal"
+        overlayClassName="modal-overlay"
+      >
+        <button onClick={closeModal} className="absolute top-0 right-0 mt-4 mr-4 p-1 text-white bg-gray-700 rounded">Close</button>
+        <div className="flex flex-col items-center justify-center h-full">
+          <img src={currentImages[modalImageIndex]} alt="Enlarged View" className="w-full h-full object-contain" />
+          <div className="mt-4 flex justify-between w-full">
+            <button onClick={prevImage} className="p-1 text-white bg-gray-700 rounded">Back</button>
+            <button onClick={nextImage} className="p-1 text-white bg-gray-700 rounded">Next</button>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };

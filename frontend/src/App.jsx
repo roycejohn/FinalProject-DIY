@@ -6,7 +6,6 @@ import Home from './pages/Home'
 import Profile from './pages/Profile'
 import Footer from './components/Footer'
 import Header from './components/Header.jsx'
-// import Projects from './pages/Projects.jsx'
 import Community from './pages/Community.jsx'
 import ProjectList from './pages/ProjectList.jsx'
 import ProjectDetail from './pages/ProjectDetail.jsx'
@@ -20,7 +19,6 @@ function App() {
       <div>
         <Routes>
           <Route path="/" element = {<Home />} />
-          {/* <Route path="/projects" element = {<Projects />} /> */}
           <Route path="/projects" element = {<ProjectList />} />
           <Route path="/projects/:projectId" element= {<ProjectDetail />} />
           <Route path="/community" element = {<Community/> } />

@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { SearchIcon } from '@heroicons/react/outline';
@@ -10,14 +11,19 @@ import ProjectForm from '../pages/ProjectForm';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
 
+  const toggleProfileMenu = () => {
+    setIsProfileMenuOpen(!isProfileMenuOpen);
+  };
 
   return (
     <>
@@ -42,14 +48,26 @@ const Header = () => {
           </nav>
 
           <div className="hidden md:flex items-center space-x-4 px-4 text-gray-700">
-            <button className="relative flex items-center bg-white border border-gray-700 focus:outline-none px-4 py-2 rounded-xl">
+            <button onClick={toggleModal} className="relative flex items-center bg-white border border-gray-700 focus:outline-none px-4 py-2 rounded-xl">
               <img src={PlusIcon} alt="Create" className="w-4 h-4 text-gray-700 absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none"/>
               <span className="ml-6">Create</span> 
             </button>
 
-            <Link to="/profile">
-              <img src={ProfileIcon} alt="Profile" className="w-8 h-8 mr-8 cursor-pointer hover:shadow-lg" />
-            </Link>
+            <div className="relative">
+              <img 
+                src={ProfileIcon} 
+                alt="Profile" 
+                className="w-8 h-8 mr-8 cursor-pointer hover:shadow-lg" 
+                onClick={toggleProfileMenu}
+              />
+              {isProfileMenuOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10">
+                  <Link to="/profile" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">My Profile</Link>
+                  <Link to="/projects" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">My Projects</Link>
+                  <button className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">Log Out</button>
+                </div>
+              )}
+            </div>
           </div>
 
           <div className="md:hidden mx-6">
