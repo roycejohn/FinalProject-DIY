@@ -9,7 +9,10 @@ import ProjectImage2 from '../assets/project2.png';
 import ProjectImage3 from '../assets/project3.png';
 import ProjectImage4 from '../assets/project4.png';
 
-function Profile() {
+function Profile({user}) {
+ //console.log(user)
+  
+
   return (
     <div className="profile">
       <div className="profile-content">
@@ -36,13 +39,13 @@ function Profile() {
             </button>
           </div>
           <div className="user-name">
-            <h2>Denis Sab</h2>
+            <h2>{user.firstName} {user.lastName}</h2>
           </div>
           <div className="user-join-date">
             <p>Joined May 2022</p>
           </div>
           <div className="profile-description">
-            <h6>Hi there!</h6>
+            <h6>Hi {user.username}!</h6>
             <h6>I am a passionate advocate for sustainable living, dedicated to helping others embrace eco-friendly habits through practical tips and inspiring projects.</h6>
           </div>
         </div>

@@ -20,10 +20,12 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (token) { 
-      setUser(true) } 
+    const user = JSON.parse(localStorage.getItem("user"));   // conv user in object fetched from Login and set to storage
+   // console.log(user)
+    if (token && user) {   // added user
+      setUser(user) }       // changed to user
       else {
-        setUser(false) }
+        setUser(null) }  // changed from true to user
       setLoading(false)
   }, []); 
 
@@ -41,7 +43,7 @@ function App() {
           <Route path="/projects" element = {<ProjectList />} />
           <Route path="/community" element = {user ? <Community/> : <Navigate to="/login" />} />
           <Route path="/about" element = {<About />} />
-          <Route path="/profile" element = {user ? <Profile /> : <Navigate to="/login" />} />
+          <Route path="/profile" element = {user ? <Profile user={user} /> : <Navigate to="/login" />} />
           <Route path="/login" element = {<Login setUser={setUser} />} />
           <Route path="/register" element = {<Register setUser={setUser} />} />
 

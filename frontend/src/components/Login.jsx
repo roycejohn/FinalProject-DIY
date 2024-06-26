@@ -42,9 +42,10 @@ const Login = ({ setUser }) => {
 
       const data = await response.json();
       localStorage.setItem("token", JSON.stringify(data.token));
+      localStorage.setItem("user", JSON.stringify(data.user)); 
 
-      setUser(true);
-      navigate("/")  // navigate to home after user is logged
+      setUser(data.user);    // setUser(true);
+      navigate("/profile")  // navigate to home after user is logged
       // console.log(user)
       console.log(data);
     } catch (error) {
