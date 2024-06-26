@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import DeleteAccount from "./DeleteAccount";
 
 const EditProfile = ({ user, setUser }) => {
 
@@ -61,6 +62,8 @@ const EditProfile = ({ user, setUser }) => {
 };
 
   return (
+
+    <>
     <form onSubmit={handleSubmit} className="max-w-lg mx-auto mt-24 p-6 bg-white">
       <h2 className="text-4xl font-bold mb-2 text-center">Edit Profile</h2>
       <div className="mb-4">
@@ -125,8 +128,20 @@ const EditProfile = ({ user, setUser }) => {
       >
         Save Changes
       </button>
+
+      <div>
+      {/* Your edit profile form here */}
+      <DeleteAccount user={user} setUser={setUser} />
+    </div>
+    
       {error && <p className="text-red-500 mt-4">{error}</p>}
+
+   
     </form>
+    
+ 
+        
+    </>
   );
 };
 

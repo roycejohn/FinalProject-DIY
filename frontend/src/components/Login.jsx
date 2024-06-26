@@ -10,21 +10,18 @@ const Login = ({ setUser }) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // HANDLERS --------------------------------------
   const handleInput = (e) => {
-    //console.log(e.target.name);
-    //console.log(e.target.value)
     setFormValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    //console.log(formValues)
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if(!formValues.username || !formValues.password ) {
-      setError("Both fields are reqired.")
+    if (!formValues.username || !formValues.password) {
+      setError("Both fields are required.");
       return;
     }
 
@@ -38,16 +35,12 @@ const Login = ({ setUser }) => {
         body: JSON.stringify(formValues),
       });
 
-      // if(!response.ok) throw Error("Fetching error")   --- blocking error from backend
-
       const data = await response.json();
       localStorage.setItem("token", JSON.stringify(data.token));
-      localStorage.setItem("user", JSON.stringify(data.user)); 
+      localStorage.setItem("user", JSON.stringify(data.user));
 
-      setUser(data.user);    // setUser(true);
-      navigate("/profile")  // navigate to home after user is logged
-      // console.log(user)
-      console.log(data);
+      setUser(data.user);
+      navigate("/profile");
     } catch (error) {
       setError(error.message);
     } finally {
@@ -61,44 +54,44 @@ const Login = ({ setUser }) => {
 
   // RETURN --------------------------------------------------
   return (
-    <>
-      <form
-        onSubmit={handleSubmit}
-        className="max-w-lg mx-auto mt-24 p-6 bg-white "
-      >
-        <h2 className="text-4xl font-bold mb-2 text-center">Welcome Back! </h2>
+    <div className="flex items-center justify-center h-screen">
+      <form onSubmit={handleSubmit} className="max-w-lg mx-auto p-6 bg-white">
+        <h2 className="text-4xl font-bold mb-2 text-center">Welcome Back!</h2>
         <p className="text-center text-xl mb-6 text-gray-600">
-          Log in below to acces your account.
+          Log in below to access your account.
         </p>
 
-        <div className="mb-4 ">
+        <div className="mb-4">
           <label
             htmlFor="username"
             className="block text-gray-700 font-medium mb-2"
-          ></label>
-
+          >
+            Username
+          </label>
           <input
             type="text"
             name="username"
             id="username"
-            placeholder="username"
+            placeholder="Username"
             value={formValues.username}
             onChange={handleInput}
             className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
           />
         </div>
 
-        <div className="mb-4 ">
+        <div className="mb-4">
           <label
             htmlFor="password"
             className="block text-gray-700 font-medium mb-2"
-          ></label>
-          <div className="relative ">
+          >
+            Password
+          </label>
+          <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
               name="password"
               id="password"
-              placeholder="password"
+              placeholder="Password"
               value={formValues.password}
               onChange={handleInput}
               className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
@@ -118,16 +111,19 @@ const Login = ({ setUser }) => {
           disabled={loading}
           className="w-full bg-black text-xl text-white py-2 rounded-lg hover:bg-indigo-700 transition duration-300"
         >
-          Login
+          {loading ? "Logging in..." : "Login"}
         </button>
 
-        <Link  to="/register" className="block text-center text-2xl underline mt-6 underline-offset-4 mt-10 mb-32">
+        <Link
+          to="/register"
+          className="block text-center text-2xl underline mt-6 mb-32"
+        >
           NOT A MEMBER? JOIN HERE
         </Link>
 
         {error && <p className="text-red-500 mt-4">{error}</p>}
       </form>
-    </>
+    </div>
   );
 };
 

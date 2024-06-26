@@ -13,6 +13,7 @@ import Login from './components/Login.jsx'
 import Register from './components/Register.jsx'
 import ProjectList from './pages/ProjectList.jsx'
 import EditProfile from './pages/EditProfile.jsx'
+import AccountDeleted from './pages/AccountDeleted.jsx'
 
 function App() {
  
@@ -48,7 +49,7 @@ function App() {
           <Route path="/login" element = {<Login setUser={setUser} />} />
           <Route path="/register" element = {<Register setUser={setUser} />} />
           <Route path="/editprofile" element = { user ? <EditProfile user={user} setUser={setUser} /> : <Navigate to="login" />} />
-
+          <Route path="/account-deleted" element={<AccountDeleted />} />
         </Routes>
       </div>
       <Footer />
