@@ -20,6 +20,7 @@ const Header = ({user,setUser}) => {
 
   const handleLogout = () => {
     localStorage.removeItem("token")
+    localStorage.removeItem("user")
     setUser(false);
   };  // Logout added
 

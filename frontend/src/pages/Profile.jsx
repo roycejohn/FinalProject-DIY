@@ -8,6 +8,7 @@ import ProjectImage1 from '../assets/project1.png';
 import ProjectImage2 from '../assets/project2.png';
 import ProjectImage3 from '../assets/project3.png';
 import ProjectImage4 from '../assets/project4.png';
+import { Link } from 'react-router-dom';
 
 function Profile({user}) {
  //console.log(user)
@@ -29,10 +30,12 @@ function Profile({user}) {
               <img src={InboxIcon} alt="Inbox" className="icon" style={{ width: '12px', height: '12px' }} />
               <span>See inbox</span>
             </button>
+            <Link to="/editprofile">
             <button className="profile-button">
               <img src={EditIcon} alt="Edit" className="icon" style={{ width: '12px', height: '12px' }} />
               <span>Edit profile</span>
             </button>
+            </Link>
             <button className="profile-button">
               <img src={SettingsIcon} alt="Settings" className="icon" style={{ width: '12px', height: '12px' }} />
               <span>Go to settings</span>
@@ -45,7 +48,7 @@ function Profile({user}) {
             <p>Joined May 2022</p>
           </div>
           <div className="profile-description">
-            <h6>Hi {user.username}!</h6>
+            <h6>Hi <strong>{user.username}</strong>!</h6>
             <h6>I am a passionate advocate for sustainable living, dedicated to helping others embrace eco-friendly habits through practical tips and inspiring projects.</h6>
           </div>
         </div>

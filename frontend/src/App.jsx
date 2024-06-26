@@ -12,6 +12,7 @@ import Community from './pages/Community.jsx'
 import Login from './components/Login.jsx'
 import Register from './components/Register.jsx'
 import ProjectList from './pages/ProjectList.jsx'
+import EditProfile from './pages/EditProfile.jsx'
 
 function App() {
  
@@ -46,6 +47,7 @@ function App() {
           <Route path="/profile" element = {user ? <Profile user={user} /> : <Navigate to="/login" />} />
           <Route path="/login" element = {<Login setUser={setUser} />} />
           <Route path="/register" element = {<Register setUser={setUser} />} />
+          <Route path="/editprofile" element = { user ? <EditProfile user={user} setUser={setUser} /> : <Navigate to="login" />} />
 
         </Routes>
       </div>
