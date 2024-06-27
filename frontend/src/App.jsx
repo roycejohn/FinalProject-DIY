@@ -22,10 +22,10 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const user = JSON.parse(localStorage.getItem("user"));   // conv user in object fetched from Login and set to storage
+    const user = JSON.parse(localStorage.getItem("user"));   
    // console.log(user)
-    if (token && user) {   // added user
-      setUser(user) }       // changed to user
+    if (token && user) {   // added user insted true to update components with username etc.
+      setUser(user) }       
       else {
         setUser(null) }  // changed from true to user
       setLoading(false)

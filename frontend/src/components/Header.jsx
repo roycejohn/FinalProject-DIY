@@ -58,7 +58,7 @@ const Header = ({ user, setUser }) => {
             </a>
           </nav>
 
-          {/* added to check if no user */}
+    {/* Added code Check for User !! */}
           {!user ? (
             <>
               <Link to="/login" className="hover:text-gray-100">
@@ -118,7 +118,7 @@ const Header = ({ user, setUser }) => {
               </div>
             </>
           )}
-          {/* added to check if no user */}
+     {/* End of Check User */}
 
           <div className="md:hidden mx-6">
             <button
