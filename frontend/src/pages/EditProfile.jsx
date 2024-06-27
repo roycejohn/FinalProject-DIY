@@ -7,6 +7,7 @@ const EditProfile = ({ user, setUser }) => {
     userImage: null,
     firstName: user.firstName,
     lastName: user.lastName,
+    about: user.about,
   
   });
 
@@ -19,7 +20,9 @@ const EditProfile = ({ user, setUser }) => {
   //  const userId = user._id;
 
   const handleInput = (e) => {
-    setFormValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const {name, value, files } = e.target;   // added IMG
+    // setFormValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setFormValues((prev) => ({ ...prev, [name]: files ? files[0] : value }));  // added IMG
   };
 
   const handleSubmit = async (e) => {
@@ -27,21 +30,30 @@ const EditProfile = ({ user, setUser }) => {
     setError(null);
     setLoading(true);
 
+    const formData = new FormData(); 
+    formData.append("userImage", formValues.userImage); 
+    formData.append("firstName", formValues.firstName); 
+    formData.append("lastName", formValues.lastName); 
+    formData.append("about", formValues.about); 
+
+
     try {
-      const { userImage, firstName, lastName, } = formValues;
+    {/*  const { userImage, firstName, lastName, about } = formValues;
       const updatedUser = {
         userImage,
         firstName,
         lastName,
- 
+        about,
       };
-
+*/} 
       const response = await fetch(
         `http://localhost:8000/users/update/${user._id}`,
         {
           method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(updatedUser),
+          // headers: { "Content-Type": "application/json" },
+          // body: JSON.stringify(updatedUser),
+          body: formData,
+
         }
       );
 
@@ -81,7 +93,8 @@ const EditProfile = ({ user, setUser }) => {
             type="file"
             name="userImage"
             id="userImage"
-            value={formValues.userImage}
+            //value={formValues.userImage}
+            accept="image/*"
             onChange={handleInput}
             className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
           />
@@ -118,38 +131,25 @@ const EditProfile = ({ user, setUser }) => {
             className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
           />
         </div>
+
         <div className="mb-4">
           <label
-            htmlFor="email"
+            htmlFor="about"
             className="block text-gray-700 font-medium mb-2"
           >
-            Email
+            About
           </label>
           <input
-            type="email"
-            name="email"
-            id="email"
-            value={formValues.email}
+            type="text"
+            name="about"
+            id="about"
+            value={formValues.about}
             onChange={handleInput}
             className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
           />
         </div>
-        <div className="mb-4">
-          <label
-            htmlFor="password"
-            className="block text-gray-700 font-medium mb-2"
-          >
-            New Password
-          </label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            value={formValues.password}
-            onChange={handleInput}
-            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
-          />
-        </div>
+    
+          
         <button
           type="submit"
           disabled={loading}

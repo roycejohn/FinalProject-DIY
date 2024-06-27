@@ -10,14 +10,14 @@ import { Link } from 'react-router-dom';
 
 function Profile({user}) {
  //console.log(user)
-  
+  const [ open, setOpen ] = useState(false)
 
   return (
     <div className="profile">
       <div className="profile-content">
         <div className="left-section">
           <img 
-            src={ProfilePicture} 
+            src={user.userImage} 
             alt="Profile" 
             className="profile-picture" 
           />
@@ -34,10 +34,12 @@ function Profile({user}) {
               <span>Edit Profile</span>
             </button>
             </Link>
-            <button className="profile-button">
+     {/* SETINGS  */} 
+            <button lassName="profile-button">
               <img src={SettingsIcon} alt="Settings" className="icon" style={{ width: '12px', height: '12px' }} />
               <span>My Settings</span>
             </button>
+     {/* SETINGS  */} 
           </div>
           <div className="user-name">
             <h2>{user.firstName} {user.lastName}</h2>
@@ -47,7 +49,7 @@ function Profile({user}) {
           </div>
           <div className="profile-description">
             <h6>Hi <strong>{user.username}</strong>!</h6>
-            <h6>I am a passionate advocate for sustainable living, dedicated to helping others embrace eco-friendly habits through practical tips and inspiring projects.</h6>
+            <h6>{user.about}</h6>
           </div>
         </div>
       </div>
