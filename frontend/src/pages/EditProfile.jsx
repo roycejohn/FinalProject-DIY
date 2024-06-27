@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import DeleteAccount from "./DeleteAccount";
+import { Link } from "react-router-dom";
 
 const EditProfile = ({ user, setUser }) => {
   const [formValues, setFormValues] = useState({
@@ -31,21 +31,16 @@ const EditProfile = ({ user, setUser }) => {
     setLoading(true);
 
     const formData = new FormData(); 
-    formData.append("userImage", formValues.userImage); 
+    if (formValues.userImage) {
+      formData.append("userImage", formValues.userImage);
+    }
     formData.append("firstName", formValues.firstName); 
     formData.append("lastName", formValues.lastName); 
     formData.append("about", formValues.about); 
 
 
     try {
-    {/*  const { userImage, firstName, lastName, about } = formValues;
-      const updatedUser = {
-        userImage,
-        firstName,
-        lastName,
-        about,
-      };
-*/} 
+
       const response = await fetch(
         `http://localhost:8000/users/update/${user._id}`,
         {
@@ -79,7 +74,7 @@ const EditProfile = ({ user, setUser }) => {
     <>
       <form
         onSubmit={handleSubmit}
-        className="max-w-lg mx-auto mt-24 p-6 bg-white"
+        className="max-w-lg mx-auto mt-24 p-6 bg-white h-screen"
       >
         <h2 className="text-4xl font-bold mb-2 text-center">Edit Profile</h2>
         <div className="mb-4">
@@ -153,17 +148,21 @@ const EditProfile = ({ user, setUser }) => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-black text-xl text-white py-2 rounded-lg hover:bg-indigo-700 transition duration-300"
+          className="w-full bg-red-700 text-xl text-white py-2 rounded-lg hover:bg-indigo-700 transition duration-300"
         >
           Save Changes
         </button>
 
-        <div>
-          {/*DELETE ACCOUNT Component*/}
-          <DeleteAccount user={user} setUser={setUser} />
-        </div>
+        <Link to="/profile">
+          <button
+            type="button"
+            className=" ml-40 mt-8 w-24 bg-stone-700 text-xl text-white py-2 rounded-lg hover:bg-indigo-700 transition duration-300"
+          >
+            Go Back
+          </button>
+        </Link>
 
-        {error && <p className="text-red-500 mt-4">{error}</p>}
+         {error && <p className="text-red-500 mt-4">{error}</p>}
       </form>
     </>
   );

@@ -7,13 +7,14 @@ import ProjectImage2 from '../assets/project2.png';
 import ProjectImage3 from '../assets/project3.png';
 import ProjectImage4 from '../assets/project4.png';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 function Profile({user}) {
  //console.log(user)
-  const [ open, setOpen ] = useState(false)
+
 
   return (
-    <div className="profile">
+    <div className="profile h-screen">
       <div className="profile-content">
         <div className="left-section">
           <img 
@@ -24,10 +25,12 @@ function Profile({user}) {
         </div>
         <div className="right-section">
           <div className="profile-buttons">
-            <button className="profile-button">
+          <Link to="/myinbox">
+            <button className="profile-button ">
               <img src={InboxIcon} alt="Inbox" className="icon" style={{ width: '12px', height: '12px' }} />
               <span>My Inbox</span>
             </button>
+            </Link>
             <Link to="/editprofile">
             <button className="profile-button">
               <img src={EditIcon} alt="Edit" className="icon" style={{ width: '12px', height: '12px' }} />
@@ -35,10 +38,28 @@ function Profile({user}) {
             </button>
             </Link>
      {/* SETINGS  */} 
-            <button lassName="profile-button">
-              <img src={SettingsIcon} alt="Settings" className="icon" style={{ width: '12px', height: '12px' }} />
-              <span>My Settings</span>
-            </button>
+
+            <div className="relative inline-block text-left group "> 
+              
+              <button className="profile-button">
+                <img src={SettingsIcon} alt="Settings" className="icon" style={{ width: '12px', height: '12px' }} />
+                <span>My Settings</span>
+              </button>
+
+              <div className="hidden group-hover:block group-hover:relative origin-top-right  left-0 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                  <Link to="/email" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
+                  Edit email 
+                  </Link>
+                  <Link to="/password" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
+                    Edit Password
+                  </Link>
+                  <Link to="/delete-account" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
+                    Delete Account
+                  </Link>
+                </div>
+              </div>
+            </div>
      {/* SETINGS  */} 
           </div>
           <div className="user-name">
