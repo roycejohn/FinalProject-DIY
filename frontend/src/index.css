@@ -375,6 +375,105 @@
 
 /* profile-page ends */
 
+/* about starts */
+
+.about-hero {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  overflow: hidden;
+}
+
+.about-hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-hero-text {
+  position: absolute;
+  bottom: 60px;
+  left: 80px;
+  text-align: left;
+  color: #ffffff;
+  width: calc(100% - 160px); 
+  max-width: 600px;
+  padding: 60px;
+  box-sizing: border-box; 
+}
+
+.about-hero-text h2 {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.about-hero-text p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.see-projects-button {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  background-color: #171818;
+  color: #ffffff;
+  font-size: 16px;
+  text-decoration: none;
+  border-radius: 12px;
+  transition: background-color 0.3s ease;
+}
+
+.see-projects-button:hover {
+  background-color: #898989;
+}
+
+.meet-our-team {
+  text-align: center;
+  margin-top: 40px;
+  padding: 0 100px; 
+  margin-bottom: 40px;
+}
+
+.meet-our-team h2 {
+  font-size: 28px;
+  font-weight: 800;
+  margin-top: 40px;
+  margin-bottom: 60px;
+}
+
+.team-members {
+  display: flex;
+  justify-content: space-around; 
+  flex-wrap: wrap;
+}
+
+.team-member {
+  width: calc(25% - 20px); 
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.team-member img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 40px;
+}
+
+.team-member p {
+  font-size: 16px;
+  font-weight: 400;
+  padding-bottom: 20px;
+  margin: 0; 
+  line-height: 1.2; 
+}
+
+/* about ends */
+
 
 /* footer starts */
 
