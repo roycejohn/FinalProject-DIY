@@ -4,10 +4,11 @@ import DeleteAccount from "./DeleteAccount";
 
 const EditProfile = ({ user, setUser }) => {
   const [formValues, setFormValues] = useState({
-    userImage: null,
+    username: user.username,
     firstName: user.firstName,
     lastName: user.lastName,
-  
+    email: user.email,
+    password: "",
   });
 
   // console.log(user)
@@ -28,12 +29,13 @@ const EditProfile = ({ user, setUser }) => {
     setLoading(true);
 
     try {
-      const { userImage, firstName, lastName, } = formValues;
+      const { username, firstName, lastName, email, password } = formValues;
       const updatedUser = {
-        userImage,
+       // username,
         firstName,
         lastName,
- 
+       // email,
+       // password: password || undefined, // Ensure password is included if not empty
       };
 
       const response = await fetch(
@@ -72,16 +74,16 @@ const EditProfile = ({ user, setUser }) => {
         <h2 className="text-4xl font-bold mb-2 text-center">Edit Profile</h2>
         <div className="mb-4">
           <label
-            htmlFor="userImage"
+            htmlFor="username"
             className="block text-gray-700 font-medium mb-2"
           >
-            Upload your Image
+            Username
           </label>
           <input
-            type="file"
-            name="userImage"
-            id="userImage"
-            value={formValues.userImage}
+            type="text"
+            name="username"
+            id="username"
+            value={formValues.username}
             onChange={handleInput}
             className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
           />
