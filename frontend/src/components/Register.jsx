@@ -66,7 +66,7 @@ const Register = ({  setUser }) => {
           Create Your Account
         </h2>
         <p className="text-center text-xl  text-gray-600">
-          Register to recive exclusive offers, redeemable points, and more!
+        Welcome to DIYHub, your ultimate destination for DIY enthusiasts! Join us today. Register now.
         </p>
       </div>
 
