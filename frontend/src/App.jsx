@@ -43,7 +43,7 @@ function App() {
           <Route path="/" element = {<Home />} />
           <Route path="/projects" element = {<ProjectList />} />
           <Route path="/projects/:projectId" element= {<ProjectDetail />} />
-          <Route path="/community" element = {user ? <Community/> : <Navigate to="/login" />} />
+          <Route path="/community" element = {<Community />} />
           <Route path="/about" element = {<About />} />
           <Route path="/profile" element = {user ? <Profile user={user} /> : <Navigate to="/login" />} />
           <Route path="/login" element = {<Login setUser={setUser} />} />
