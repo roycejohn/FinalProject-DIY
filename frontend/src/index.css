@@ -10,13 +10,7 @@
   font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
-
-
 /* home starts*/
-
-.home {
-  font-family: Arial, sans-serif;
-}
 
 .hero {
   position: relative;
@@ -161,7 +155,6 @@
 .see-more:hover {
   color: #898989;
 }
-
 
 
 @media (max-width: 768px) {
@@ -387,8 +380,6 @@
 
 
 /* home ends*/
-
-
 
 
 /* profile-page starts*/
@@ -675,9 +666,9 @@
 .our-values {
   text-align: center;
   margin-top: 60px;
+  margin-bottom: 60px;
   margin-left: 80px;
   margin-right: 80px;
-  margin-bottom: 60px;
 }
 
 .our-values h1 {
@@ -685,13 +676,16 @@
   font-weight: 600;
   margin-bottom: 40px;
   text-align: left;
-  margin-left: 20px;
+  margin-left: 80px;
+  margin-right: 80px;
 }
 
 .values-cards {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  margin-left: 80px;
+  margin-right: 80px;
 }
 
 .card {
@@ -715,8 +709,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #ffffff;
-  background: rgba(24, 23, 23, 0.5);
+  color: #171818;
   font-size: 18px;
   font-weight: 600;
   text-align: center;
@@ -726,12 +719,17 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 80px 100px;
+  margin-left: 80px;
+  margin-right: 80px;
+  margin-top: 60px;
+  margin-bottom: 60px;
 }
 
 .get-in-touch-text {
   max-width: 50%;
   text-align: left;
+  margin-left: 80px;
+  margin-right: 80px;
 }
 
 .get-in-touch-text h1 {
@@ -769,7 +767,9 @@
 
 .get-in-touch-image {
   width: 20%;
-  height: auto;
+  height: auto; 
+  margin-right: 80px;
+  padding-right: 80px;
 }
 
 @media (max-width: 1024px) {
