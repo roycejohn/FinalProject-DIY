@@ -720,7 +720,7 @@
   align-items: center;
   justify-content: space-between;
   margin-left: 80px;
-  margin-right: 80px;
+  margin-right: 160px;
   margin-top: 60px;
   margin-bottom: 60px;
 }
@@ -734,19 +734,19 @@
 
 .get-in-touch-text h1 {
   font-size: 32px;
-  font-weight: 700;
-  margin-bottom: 20px;
+  font-weight: 600;
+  margin-bottom: 60px;
+  text-align: left;
 }
 
 .get-in-touch-text h2 {
   font-size: 18px;
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .get-in-touch-text p {
   font-size: 16px;
-  line-height: 1.6;
   margin-bottom: 20px;
 }
 
@@ -765,11 +765,9 @@
   background-color: #898989;
 }
 
-.get-in-touch-image {
-  width: 20%;
-  height: auto; 
-  margin-right: 80px;
-  padding-right: 80px;
+.contact-image {
+  width: 40%;
+  height: auto;
 }
 
 @media (max-width: 1024px) {
@@ -781,13 +779,13 @@
     max-width: 60%;
   }
 
-  .get-in-touch-image {
+  .contact-image {
     width: 35%;
   }
 }
 
 @media (max-width: 768px) {
-  .get-in-touch {
+  .contact-image {
     flex-direction: column;
     align-items: center;
     text-align: center;
