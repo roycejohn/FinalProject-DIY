@@ -11,7 +11,12 @@
 }
 
 
-/* Hero starts*/
+
+/* home starts*/
+
+.home {
+  font-family: Arial, sans-serif;
+}
 
 .hero {
   position: relative;
@@ -20,6 +25,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  background-color: #f2f2f2;
 }
 
 .hero-image {
@@ -29,7 +35,6 @@
   position: absolute;
   top: 0;
   left: 0;
-  z-index: -1;
 }
 
 .hero-text {
@@ -62,12 +67,188 @@
     padding-bottom: 40px;
   }
 }
-/* Hero ends*/
 
-/* Newsletter starts */
+.recent-projects {
+  margin-top: 60px;
+  margin-bottom: 60px;
+  margin-left: 80px;
+  margin-right: 80px;
+  padding: 0px 80px 0px 80px;
+}
+
+.recent-projects h1 {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.project-cards {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left {
+  width: 50%;
+}
+
+.right {
+  width: 50%;
+}
+
+.project-card {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.project-card.small {
+  display: flex; 
+}
+
+.project-image {
+  width: 180px; 
+  height: 120px; 
+  margin-right: 20px; 
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-details {
+  flex: 1; 
+}
+
+.project-details h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px; 
+}
+
+.project-details p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.right .project-card.big .project-image {
+  width: 100%; 
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.right .project-image img {
+  width: 100%;
+  height: auto;
+  max-height: 400px; 
+}
+
+.see-more-project-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.see-more {
+  font-size: 12px;
+  font-weight: 300;
+  text-decoration: underline;
+  color: #171818;
+  transition: background-color 0.3s;
+}
+
+.see-more:hover {
+  color: #898989;
+}
+
+
+
+@media (max-width: 768px) {
+  .recent-projects {
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 0 20px;
+  }
+
+  .project-cards {
+    flex-direction: column;
+  }
+
+  .left, .right {
+    width: 100%;
+  }
+
+  .left .project-image {
+    width: 100%;
+    height: auto;
+    max-height: 200px; 
+    margin-right: 0; 
+  }
+
+  .right .project-card.big .project-image {
+    height: auto;
+    max-height: 300px; 
+  }
+}
+
+.most-popular {
+  margin-top: 60px;
+  margin-bottom: 60px;
+  margin-left: 80px;
+  margin-right: 80px;
+}
+
+.most-popular h1 {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  margin-left: 80px;
+  margin-right: 80px;
+}
+
+.popular-cards {
+  display: flex;
+  justify-content: space-between; 
+  margin-left: 80px;
+  margin-right: 80px;
+}
+
+.popular-card {
+  width: 30%; 
+  margin-bottom: 20px; 
+}
+
+.popular-image {
+  width: 100%;
+}
+
+.popular-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.popular-details {
+  padding: 20px;
+}
+
+.popular-details h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.popular-details p {
+  font-size: 16px;
+}
+
+
+
 .newsletter {
   display: flex;
   margin-top: 40px;
+  margin-left: 80px;
   margin-bottom: 40px;
   width: 100%;
   height: auto;
@@ -86,7 +267,7 @@
 }
 
 .newsletter-right {
-  width: 60%; 
+  width: 60%;
   max-height: 360px;
   background-color: #343434;
   color: white;
@@ -96,7 +277,7 @@
   align-items: center;
   border-radius: 10px;
   padding: 40px;
-  margin-left: auto; 
+  margin-left: auto;
 }
 
 .newsletter-image {
@@ -108,13 +289,15 @@
 
 .newsletter-content {
   width: 100%;
+  margin-left: 20px;
+  margin-right: 80px;
   padding-top: 20px;
-  padding-left: 20px;
+  padding-left: 40px;
   padding-right: 80px;
 }
 
 .newsletter-content h2 {
-  font-size: 24px;
+  font-size: 32px;
   font-weight: 600;
   padding-bottom: 20px;
   color: #FFFFFF;
@@ -126,6 +309,7 @@
   padding-bottom: 20px;
   color: #FFFFFF;
   text-align: left;
+  padding-right: 80px;
 }
 
 .newsletter-form {
@@ -200,7 +384,11 @@
   }
 }
 
-/* newsletter ends*/
+
+
+/* home ends*/
+
+
 
 
 /* profile-page starts*/
@@ -333,12 +521,10 @@
 }
 
 .see-more-link {
-  padding: 10px 0px;
   font-size: 14px;
   font-weight: 700;
   color: #171818;
   text-decoration: underline;
-  border-radius: 12px;
   transition: background-color 0.3s;
 }
 
