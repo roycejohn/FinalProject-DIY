@@ -1,5 +1,5 @@
 import HeroImage from '../assets/hero-image.png';
-import NewsletterImage from '../assets/newsletter-image.svg';
+import NewsletterImage from '../assets/join-image.svg';
 import PImage1 from '../assets/p1.png';
 import PImage2 from '../assets/p2.png';
 import PImage3 from '../assets/p3.png';
@@ -7,7 +7,7 @@ import PImage4 from '../assets/p4.png';
 import PopularImage1 from '../assets/popular1.png';
 import PopularImage2 from '../assets/popular2.png';
 import PopularImage3 from '../assets/popular3.png';
-
+import { Link } from 'react-router-dom';
 
 function Home() {
   return (
@@ -77,7 +77,7 @@ function Home() {
         <h1>Most Popular</h1>
         <div className="popular-cards">
           {/* Card 1 */}
-        <div className="popular-card">
+          <div className="popular-card">
             <div className="popular-image">
               <img src={PopularImage1} alt="Project 1" />
             </div>
@@ -112,25 +112,24 @@ function Home() {
             </div>
           </div>
         </div>
-      </div>  
+      </div>
 
-      <div className="newsletter">
-        <div className="newsletter-left">
-          <img src={NewsletterImage} alt="Newsletter" className="newsletter-image" />
+      <div className="join">
+        <div className="join-left">
+          <img src={JoinImage} alt="Join" className="join-image" />
         </div>
-        <div className="newsletter-right">
-          <div className="newsletter-content">
+        <div className="join-right">
+          <div className="join-content">
             <h2>Join Our Community!</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at ipsum id mauris mollis malesuada. Nam id consectetur ligula.
-            </p>
-            <form className="newsletter-form">
-              <input type="email" placeholder="Your email address" className="newsletter-input" />
-              <button type="join" className="newsletter-button">Join</button>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at ipsum id mauris mollis malesuada. Nam id consectetur ligula.</p>
+            <form className="join-form">
+              <Link to="/register">
+                <button type="button" className="join-button">Join</button>
+              </Link>
             </form>
           </div>
         </div>
       </div>
-
     </div>
   );
 }
