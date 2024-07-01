@@ -164,7 +164,7 @@ const ProjectDetail = () => {
       <div className='bg-white p-4 rounded-lg shadow-md mt-8'>
         <textarea
           className='w-full p-2 border rounded mb-2'
-          placeholder='Please share your comments and have a discussion here!'
+          placeholder='Please share your comments here!'
           value={comment}
           onChange={handleCommentChange}
         />
@@ -172,10 +172,9 @@ const ProjectDetail = () => {
           We have a be nice policy. Please be positive and constructive.
         </p>
         <div className='flex justify-between items-center'>
-          <button 
-            className='bg-gray-200 text-gray-700 px-4 py-2 rounded' 
-            onClick={() => setComment("")}
-          >
+          <button
+            className='bg-gray-200 text-gray-700 px-4 py-2 rounded'
+            onClick={() => setComment("")}>
             Cancel
           </button>
           <div className='flex items-center'>
