@@ -24,6 +24,7 @@ function App() {
   const [ loading, setLoading ] = useState(true)
 
   useEffect(() => {
+    try { 
     const token = localStorage.getItem("token");
     const user = JSON.parse(localStorage.getItem("user"));   
    // console.log(user)
@@ -31,7 +32,14 @@ function App() {
       setUser(user) }       
       else {
         setUser(null) }  // changed from true to user
-      setLoading(false)
+      }
+      catch(error) {
+        console.error("Failed to parse user from local storage, error")
+        setUser(null)
+      }finally{
+        setLoading(false)
+      }
+      
   }, []); 
 
   if(loading) {
