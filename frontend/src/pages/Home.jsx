@@ -4,11 +4,7 @@ import PImage1 from '../assets/p1.png';
 import PImage2 from '../assets/p2.png';
 import PImage3 from '../assets/p3.png';
 import PImage4 from '../assets/p4.png';
-import PopularImage1 from '../assets/popular1.png';
-import PopularImage2 from '../assets/popular2.png';
-import PopularImage3 from '../assets/popular3.png';
-import DiyImage from '../assets/diy.png';
-import PlayIcon from '../assets/play.svg';
+
 
 function Home() {
   return (
