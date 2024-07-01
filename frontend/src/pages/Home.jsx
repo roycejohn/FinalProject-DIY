@@ -4,6 +4,9 @@ import PImage1 from '../assets/p1.png';
 import PImage2 from '../assets/p2.png';
 import PImage3 from '../assets/p3.png';
 import PImage4 from '../assets/p4.png';
+import PopularImage1 from '../assets/popular1.png';
+import PopularImage2 from '../assets/popular2.png';
+import PopularImage3 from '../assets/popular3.png';
 
 
 function Home() {
@@ -117,12 +120,12 @@ function Home() {
         </div>
         <div className="newsletter-right">
           <div className="newsletter-content">
-            <h2>Lorem Ipsum Newsletter!</h2>
+            <h2>Join Our Community!</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at ipsum id mauris mollis malesuada. Nam id consectetur ligula.
             </p>
             <form className="newsletter-form">
               <input type="email" placeholder="Your email address" className="newsletter-input" />
-              <button type="submit" className="newsletter-button">Subscribe</button>
+              <button type="join" className="newsletter-button">Join</button>
             </form>
           </div>
         </div>
