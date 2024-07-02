@@ -1,5 +1,5 @@
 import HeroImage from '../assets/hero-image.png';
-import NewsletterImage from '../assets/join-image.svg';
+import JoinImage from '../assets/join-image.svg';
 import PImage1 from '../assets/p1.png';
 import PImage2 from '../assets/p2.png';
 import PImage3 from '../assets/p3.png';
