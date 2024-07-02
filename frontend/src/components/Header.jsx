@@ -80,29 +80,34 @@ const Header = ({ user, setUser }) => {
                     src={PlusIcon}
                     alt="Create"
                     className="w-4 h-4 text-gray-700 absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none"
-                  />
+                  /> 
                   <span className="ml-6">Create</span>
                 </button>
 
-                <div className="relative">
+                <div className="relative flex items-center ">
                   <img
                     src={ProfileIcon}
                     alt="Profile"
-                    className="w-8 h-8 cursor-pointer hover:shadow-lg"
+                    className="w-8 h-8 cursor-pointer hover:shadow-lg "
                     onClick={toggleProfileMenu}
-                  />
+                  /> 
+   {/* Added username on header!! */}
+                  <div className="ml-4">
+                  <h6 className="text-sm font-bold text-zinc-500 "> Hello <strong className="text-red-400">{user.username}</strong></h6>
+                  </div>
+    {/* Added username on header!! */}     
 
                   {isProfileMenuOpen && (
-                    <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10">
+                    <div className="absolute  mt-52 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10">
                       <Link
                         to="/profile"
-                        className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                        className="block px-4 py-2 text-gray-700 hover:bg-blue-100"
                       >
                         My Profile
                       </Link>
                       <Link
                         to="/myprojects"
-                        className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                        className="block px-4 py-2 text-gray-700 hover:bg-gray-200"
                       >
                         My Projects
                       </Link>
@@ -121,6 +126,7 @@ const Header = ({ user, setUser }) => {
                     </div>
                   )}
                 </div>
+                
               </div>
             </>
           )}
