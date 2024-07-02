@@ -71,7 +71,7 @@ const Register = ({ setUser }) => {
             placeholder="username"
             value={formValues.username}
             onChange={handleInput}
-            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:text-gray-700"
+            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-gray-400"
           />
         </div>
         <div className="mb-4">
@@ -83,7 +83,7 @@ const Register = ({ setUser }) => {
             placeholder="first name"
             value={formValues.firstName}
             onChange={handleInput}
-            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:text-gray-700"
+            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-gray-400"
           />
         </div>
         <div className="mb-4">
@@ -95,7 +95,7 @@ const Register = ({ setUser }) => {
             placeholder="last name"
             value={formValues.lastName}
             onChange={handleInput}
-            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:text-gray-700"
+            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-gray-400"
           />
         </div>
         <div className="mb-4">
@@ -107,7 +107,7 @@ const Register = ({ setUser }) => {
             placeholder="email@example.com"
             value={formValues.email}
             onChange={handleInput}
-            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:text-gray-700"
+            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-gray-400"
           />
         </div>
         <div className="mb-4">
@@ -121,7 +121,7 @@ const Register = ({ setUser }) => {
                 placeholder="password"
                 value={formValues.password}
                 onChange={handleInput}
-                className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:text-gray-700"
+                className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-gray-400"
               />
               <button
                 type="button"
