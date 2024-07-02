@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Register = ({  setUser }) => {
+const Register = ({ setUser }) => {
   const [formValues, setFormValues] = useState({
     username: "",
     firstName: "",
@@ -15,15 +15,11 @@ const Register = ({  setUser }) => {
   const navigate = useNavigate();
 
   const handleInput = (e) => {
-    //console.log(e.target.name);
-    //console.log(e.target.value)
     setFormValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    //console.log(formValues)
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     setError(null);
     setLoading(true);
 
@@ -34,18 +30,12 @@ const Register = ({  setUser }) => {
         body: JSON.stringify(formValues),
       });
 
-      // if(!response.ok) throw Error("Fetching error")   --- blocking error from backend
-
       const data = await response.json();
       localStorage.setItem("token", JSON.stringify(data.token));
-      localStorage.setItem("token", JSON.stringify(data.user));  
- 
+      localStorage.setItem("user", JSON.stringify(data.user));  
+
       setUser(data.user);
-        // update local storage
-       // localStorage.setItem("user", JSON.stringify(data));
-      navigate("/profile")   // navigate to homepage
-     // console.log(user);
-    // console.log(data);
+      navigate("/profile");
     } catch (error) {
       setError(error.message);
     } finally {
@@ -58,29 +48,22 @@ const Register = ({  setUser }) => {
   };
 
   return (
-    <>
-    <div className=" h-screen ">
-
-    <div className="max-w-2xl mx-auto mt-24  p-6 bg-white ">
+    <div className="h-screen">
+      <div className="max-w-2xl mx-auto mt-24 p-6 bg-white">
         <h2 className="text-4xl font-bold mb-2 text-center">
           Create Your Account
         </h2>
-        <p className="text-center text-xl  text-gray-600">
-        Welcome to DIYHub, your ultimate destination for DIY enthusiasts! Join us today. Register now.
+        <p className="text-center text-xl text-gray-600">
+          Welcome to DIY Hub, your ultimate destination for DIY enthusiasts! Join us today. Register now.
         </p>
       </div>
 
       <form
         onSubmit={handleSubmit}
-        className="max-w-lg mx-auto   p-6 bg-white "
+        className="max-w-lg mx-auto p-6 bg-white"
       >
-        <div className="mb-4 ">
-          {/*USERNAME*/}
-          <label
-            htmlFor="username"
-            className="block text-gray-700 font-medium mb-2"
-          ></label>
-
+        <div className="mb-4">
+          <label htmlFor="username" className="block text-gray-700 font-medium mb-2"></label>
           <input
             type="text"
             name="username"
@@ -88,18 +71,11 @@ const Register = ({  setUser }) => {
             placeholder="username"
             value={formValues.username}
             onChange={handleInput}
-            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
+            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:text-gray-700"
           />
         </div>
-        {/*FIRST NAME*/}
-        <div className="mb-4 ">
-          <label
-            htmlFor="firstName"
-            className="block text-gray-700 font-medium mb-2"
-          >
-            {" "}
-          </label>
-
+        <div className="mb-4">
+          <label htmlFor="firstName" className="block text-gray-700 font-medium mb-2"></label>
           <input
             type="text"
             name="firstName"
@@ -107,18 +83,11 @@ const Register = ({  setUser }) => {
             placeholder="first name"
             value={formValues.firstName}
             onChange={handleInput}
-            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
+            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:text-gray-700"
           />
         </div>
-        {/*LAST NAME*/}
-        <div className="mb-4 ">
-          <label
-            htmlFor="lastName"
-            className="block text-gray-700 font-medium mb-2"
-          >
-            {" "}
-          </label>
-
+        <div className="mb-4">
+          <label htmlFor="lastName" className="block text-gray-700 font-medium mb-2"></label>
           <input
             type="text"
             name="lastName"
@@ -126,18 +95,11 @@ const Register = ({  setUser }) => {
             placeholder="last name"
             value={formValues.lastName}
             onChange={handleInput}
-            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
+            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:text-gray-700"
           />
         </div>
-        {/*EMAIL*/}
-        <div className="mb-4 ">
-          <label
-            htmlFor="email"
-            className="block text-gray-700 font-medium mb-2"
-          >
-            {" "}
-          </label>
-
+        <div className="mb-4">
+          <label htmlFor="email" className="block text-gray-700 font-medium mb-2"></label>
           <input
             type="text"
             name="email"
@@ -145,17 +107,12 @@ const Register = ({  setUser }) => {
             placeholder="email@example.com"
             value={formValues.email}
             onChange={handleInput}
-            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
+            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:text-gray-700"
           />
         </div>
-        {/*PASSWORD*/}
         <div className="mb-4">
           <div className="relative">
-            <label
-              htmlFor="password"
-              className="block text-gray-700 font-medium mb-2"
-            ></label>
-
+            <label htmlFor="password" className="block text-gray-700 font-medium mb-2"></label>
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
@@ -164,14 +121,14 @@ const Register = ({  setUser }) => {
                 placeholder="password"
                 value={formValues.password}
                 onChange={handleInput}
-                className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
+                className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:text-gray-700"
               />
               <button
                 type="button"
                 onClick={toggleShowPassword}
-                className="absolute inset-y-0 right-0 px-3 py-2 text-zinc-500"
+                className="absolute inset-y-0 right-0 px-3 py-2 text-gray-500"
               >
-                {showPassword ? "Hide" : "Show"}{" "}
+                {showPassword ? "Hide" : "Show"}
               </button>
             </div>
           </div>
@@ -180,16 +137,14 @@ const Register = ({  setUser }) => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-black text-lg text-white  mb-32  py-2 rounded-lg hover:bg-indigo-700 transition duration-300"
+          className="w-full bg-gray-900 text-lg text-white py-2 rounded-lg hover:bg-gray-400 transition duration-300"
         >
-          Register Now{" "}
+          Register Now
         </button>
 
         {error && <p className="text-red-500 mt-4">{error}</p>}
       </form>
     </div>
-      
-    </>
   );
 };
 
