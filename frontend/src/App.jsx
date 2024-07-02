@@ -50,6 +50,7 @@ function App() {
           <Route path="/register" element = {<Register setUser={setUser} />} />
           <Route path="/editprofile" element = { user ? <EditProfile user={user} setUser={setUser} /> : <Navigate to="login" />} />
           <Route path="/account-deleted" element={<AccountDeleted />} />
+          
         </Routes>
       </div>
       <Footer />
