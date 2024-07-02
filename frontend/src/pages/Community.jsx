@@ -107,7 +107,7 @@ function Community() {
           />
           <div className='p-4 w-1/2'>
             <h3 className='text-xl font-semibold'>
-              Question & Answers Discussion
+              Q&A Discussion
             </h3>
             <p className='text-gray-600'>
               Please get clarified with your questions
