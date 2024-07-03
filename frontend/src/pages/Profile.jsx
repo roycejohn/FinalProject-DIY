@@ -64,21 +64,21 @@ function Profile({ user }) {
                 >
                   <Link
                     to="/email"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    className="block px-4 py-2 text-sm text-gray-900 hover:bg-gray-100"
                     role="menuitem"
                   >
                     Edit email
                   </Link>
                   <Link
                     to="/password"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    className="block px-4 py-2 text-sm text-gray-900 hover:bg-gray-100"
                     role="menuitem"
                   >
                     Edit Password
                   </Link>
                   <Link
                     to="/delete-account"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    className="block px-4 py-2 text-sm text-gray-900 hover:bg-gray-100"
                     role="menuitem"
                   >
                     Delete Account
@@ -113,32 +113,28 @@ function Profile({ user }) {
             <img src={ProjectImage1} alt="Project 1" />
             <h3>Project One</h3>
             <p>
-              A brief description of project one. This project focuses on
-              sustainable living practices.
+              A brief description of project one.
             </p>
           </div>
           <div className="project-card">
             <img src={ProjectImage2} alt="Project 2" />
             <h3>Project Two</h3>
             <p>
-              A brief description of project two. This project promotes
-              eco-friendly habits.
+              A brief description of project two.
             </p>
           </div>
           <div className="project-card">
             <img src={ProjectImage3} alt="Project 3" />
             <h3>Project Three</h3>
             <p>
-              A brief description of project three. This project involves
-              community recycling efforts.
+              A brief description of project three.
             </p>
           </div>
           <div className="project-card">
             <img src={ProjectImage4} alt="Project 4" />
             <h3>Project Four</h3>
             <p>
-              A brief description of project three. This project involves
-              community recycling efforts.
+              A brief description of project three.
             </p>
           </div>
         </div>

@@ -76,11 +76,11 @@ const EditProfile = ({ user, setUser }) => {
         onSubmit={handleSubmit}
         className="max-w-lg mx-auto mt-24 p-6 bg-white h-screen"
       >
-        <h2 className="text-4xl font-bold mb-2 text-center">Edit Profile</h2>
+        <h2 className="text-3xl font-bold mb-10 text-center">Edit Profile</h2>
         <div className="mb-4">
           <label
             htmlFor="userImage"
-            className="block text-gray-700 font-medium mb-2"
+            className="block text-gray-900 font-medium mb-2"
           >
             Upload your Image
           </label>
@@ -91,13 +91,13 @@ const EditProfile = ({ user, setUser }) => {
             //value={formValues.userImage}
             accept="image/*"
             onChange={handleInput}
-            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
+            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-gray-400"
           />
         </div>
         <div className="mb-4">
           <label
             htmlFor="firstName"
-            className="block text-gray-700 font-medium mb-2"
+            className="block text-gray-900 font-medium mb-2"
           >
             First Name
           </label>
@@ -107,13 +107,13 @@ const EditProfile = ({ user, setUser }) => {
             id="firstName"
             value={formValues.firstName}
             onChange={handleInput}
-            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
+            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-gray-400"
           />
         </div>
         <div className="mb-4">
           <label
             htmlFor="lastName"
-            className="block text-gray-700 font-medium mb-2"
+            className="block text-gray-900 font-medium mb-2"
           >
             Last Name
           </label>
@@ -123,14 +123,14 @@ const EditProfile = ({ user, setUser }) => {
             id="lastName"
             value={formValues.lastName}
             onChange={handleInput}
-            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
+            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-gray-400"
           />
         </div>
 
         <div className="mb-4">
           <label
             htmlFor="about"
-            className="block text-gray-700 font-medium mb-2"
+            className="block text-gray-900 font-medium mb-2"
           >
             About
           </label>
@@ -140,7 +140,7 @@ const EditProfile = ({ user, setUser }) => {
             id="about"
             value={formValues.about}
             onChange={handleInput}
-            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
+            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-gray-400"
           />
         </div>
     
@@ -148,7 +148,7 @@ const EditProfile = ({ user, setUser }) => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-red-700 text-xl text-white py-2 rounded-lg hover:bg-indigo-700 transition duration-300"
+          className="w-full bg-gray-900 text-l mt-4 text-white py-2 rounded-lg hover:bg-gray-400 transition duration-300"
         >
           Save Changes
         </button>
@@ -156,7 +156,7 @@ const EditProfile = ({ user, setUser }) => {
         <Link to="/profile">
           <button
             type="button"
-            className=" ml-40 mt-8 w-24 bg-stone-700 text-xl text-white py-2 rounded-lg hover:bg-indigo-700 transition duration-300"
+            className=" ml-40 mt-4 w-32 bg-white text-l border border-gray-400 text-gray-900 py-2 rounded-lg hover:bg-gray-400 transition duration-300"
           >
             Go Back
           </button>

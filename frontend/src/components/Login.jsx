@@ -72,7 +72,7 @@ useEffect(() => {
     <div className="flex items-center justify-center h-screen">
       <form onSubmit={handleSubmit} className="max-w-lg mx-auto p-6 bg-white">
         <h2 className="text-4xl font-bold mb-2 text-center">Welcome Back!</h2>
-        <p className="text-center text-xl mb-6 text-gray-600">
+        <p className="text-center text-xl mb-6 text-gray-700">
           Log in below to access your account.
         </p>
 
@@ -90,7 +90,7 @@ useEffect(() => {
             placeholder="Username"
             value={formValues.username}
             onChange={handleInput}
-            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
+            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-gray-100"
           />
         </div>
 
@@ -109,7 +109,7 @@ useEffect(() => {
               placeholder="Password"
               value={formValues.password}
               onChange={handleInput}
-              className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
+              className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-gray-100"
             />
             <button
               type="button"
@@ -124,14 +124,14 @@ useEffect(() => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-black text-xl text-white py-2 rounded-lg hover:bg-indigo-700 transition duration-300"
+          className="w-full bg-gray-900 text-l text-white py-2 rounded-lg hover:bg-gray-400 transition duration-300"
         >
           {loading ? "Logging in..." : "Login"}
         </button>
 
         <Link
           to="/register"
-          className="block text-center text-2xl underline mt-6 mb-32"
+          className="block text-center text-xl underline mt-6 mb-32"
         >
           NOT A MEMBER? JOIN HERE
         </Link>
