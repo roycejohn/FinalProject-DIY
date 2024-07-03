@@ -50,10 +50,10 @@ const Register = ({ setUser }) => {
   return (
     <div className="h-screen">
       <div className="max-w-2xl mx-auto mt-24 p-6 bg-white">
-        <h2 className="text-4xl font-bold mb-2 text-center">
+        <h2 className="text-3xl font-bold mb-2 text-center">
           Create Your Account
         </h2>
-        <p className="text-center text-xl text-gray-600">
+        <p className="text-center text-xl text-gray-900">
           Welcome to DIY Hub, your ultimate destination for DIY enthusiasts! Join us today. Register now.
         </p>
       </div>
@@ -63,7 +63,7 @@ const Register = ({ setUser }) => {
         className="max-w-lg mx-auto p-6 bg-white"
       >
         <div className="mb-4">
-          <label htmlFor="username" className="block text-gray-700 font-medium mb-2"></label>
+          <label htmlFor="username" className="block text-gray-900 font-medium mb-2"></label>
           <input
             type="text"
             name="username"
@@ -71,11 +71,11 @@ const Register = ({ setUser }) => {
             placeholder="username"
             value={formValues.username}
             onChange={handleInput}
-            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-gray-400"
+            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-gray-100"
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="firstName" className="block text-gray-700 font-medium mb-2"></label>
+          <label htmlFor="firstName" className="block text-gray-900 font-medium mb-2"></label>
           <input
             type="text"
             name="firstName"
@@ -83,11 +83,11 @@ const Register = ({ setUser }) => {
             placeholder="first name"
             value={formValues.firstName}
             onChange={handleInput}
-            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-gray-400"
+            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-gray-100"
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="lastName" className="block text-gray-700 font-medium mb-2"></label>
+          <label htmlFor="lastName" className="block text-gray-900 font-medium mb-2"></label>
           <input
             type="text"
             name="lastName"
@@ -95,11 +95,11 @@ const Register = ({ setUser }) => {
             placeholder="last name"
             value={formValues.lastName}
             onChange={handleInput}
-            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-gray-400"
+            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-gray-100"
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="email" className="block text-gray-700 font-medium mb-2"></label>
+          <label htmlFor="email" className="block text-gray-900 font-medium mb-2"></label>
           <input
             type="text"
             name="email"
@@ -107,12 +107,12 @@ const Register = ({ setUser }) => {
             placeholder="email@example.com"
             value={formValues.email}
             onChange={handleInput}
-            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-gray-400"
+            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-gray-100"
           />
         </div>
         <div className="mb-4">
           <div className="relative">
-            <label htmlFor="password" className="block text-gray-700 font-medium mb-2"></label>
+            <label htmlFor="password" className="block text-gray-900 font-medium mb-2"></label>
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
@@ -121,12 +121,12 @@ const Register = ({ setUser }) => {
                 placeholder="password"
                 value={formValues.password}
                 onChange={handleInput}
-                className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-gray-400"
+                className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-gray-100"
               />
               <button
                 type="button"
                 onClick={toggleShowPassword}
-                className="absolute inset-y-0 right-0 px-3 py-2 text-gray-500"
+                className="absolute inset-y-0 right-0 px-3 py-2 text-gray-900"
               >
                 {showPassword ? "Hide" : "Show"}
               </button>

@@ -90,7 +90,7 @@ useEffect(() => {
             placeholder="Username"
             value={formValues.username}
             onChange={handleInput}
-            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-gray-400"
+            className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-gray-100"
           />
         </div>
 
@@ -109,7 +109,7 @@ useEffect(() => {
               placeholder="Password"
               value={formValues.password}
               onChange={handleInput}
-              className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-gray-400"
+              className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-gray-100"
             />
             <button
               type="button"
@@ -124,7 +124,7 @@ useEffect(() => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-gray-900 text-xl text-white py-2 rounded-lg hover:bg-gray-400 transition duration-300"
+          className="w-full bg-gray-900 text-l text-white py-2 rounded-lg hover:bg-gray-400 transition duration-300"
         >
           {loading ? "Logging in..." : "Login"}
         </button>
