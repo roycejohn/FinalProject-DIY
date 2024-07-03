@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { getProjects } from '../hooks/apiHook.js';
 import { Link } from 'react-router-dom';
@@ -7,6 +6,7 @@ const ProjectList = () => {
   const [projects, setProjects] = useState([]);
   const [filteredProjects, setFilteredProjects] = useState([]);
   const [activeCategory, setActiveCategory] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,7 +21,6 @@ const ProjectList = () => {
     fetchData();
   }, []);
 
-  
   const filterProjects = (category) => {
     if (category === 'All') {
       setFilteredProjects(projects);
@@ -32,10 +31,26 @@ const ProjectList = () => {
     setActiveCategory(category);
   };
 
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+    const filtered = projects.filter(project =>
+      project.title.toLowerCase().includes(e.target.value.toLowerCase()) ||
+      project.description.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    setFilteredProjects(filtered);
+  };
+
   return (
     <div className="container mx-auto max-w-5xl p-4">
       <h1 className="text-2xl font-bold mb-4">Explore Projects</h1>
       <div className="flex mb-4">
+        <input
+          type="text"
+          placeholder="Search projects..."
+          value={searchQuery}
+          onChange={handleSearch}
+          className="mr-4 px-3 py-1 border rounded focus:outline-none"
+        />
         <button
           className={`mr-4 px-3 py-1 rounded focus:outline-none ${activeCategory === 'All' ? 'bg-gray-200 text-gray-700' : 'bg-white text-gray-700'}`}
           onClick={() => filterProjects('All')}
@@ -69,8 +84,8 @@ const ProjectList = () => {
             )}
             <h2 className="text-xl font-semibold mb-2">{project.title}</h2>
             <p className="text-gray-700 mb-2">{project.description}</p>
-            <Link to={`/projects/${project._id}`} className="text-blue-500 hover:underline">
-              View Details
+            <Link to={`/projects/${project._id}`} className="text-gray-700 hover:underline">
+              See Details
             </Link>
           </div>
         ))}
@@ -80,5 +95,3 @@ const ProjectList = () => {
 };
 
 export default ProjectList;
-
-

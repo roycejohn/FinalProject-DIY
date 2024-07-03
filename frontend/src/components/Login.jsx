@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = ({ setUser }) => {
@@ -11,6 +11,16 @@ const Login = ({ setUser }) => {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+
+// Use effect for error timeout 
+
+useEffect(() => { 
+  if (error) {
+  const timer = setTimeout( () => { setError(null) } , 4000) 
+  return () => clearTimeout(timer) }
+}, [error] )
+
+
 
   // HANDLERS --------------------------------------
   const handleInput = (e) => {
@@ -29,13 +39,18 @@ const Login = ({ setUser }) => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:8000/users/login", {
+      const response = await fetch("https://diy-server.onrender.com/users/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formValues),
       });
 
       const data = await response.json();
+
+      if(!response.ok) {
+        throw new Error (data.error || "Login faild");
+      }
+
       localStorage.setItem("token", JSON.stringify(data.token));
       localStorage.setItem("user", JSON.stringify(data.user));
 
@@ -121,7 +136,18 @@ const Login = ({ setUser }) => {
           NOT A MEMBER? JOIN HERE
         </Link>
 
-        {error && <p className="text-red-500 mt-4">{error}</p>}
+      {/*   {error && <p className="text-red-500 mt-4">{error}</p>}   */}  
+
+      {error && (
+          <div 
+          className="flex items-center mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-md animate-pulse">
+            <span>{error}</span>
+          </div>
+        )}
+
+
+
+
       </form>
     </div>
   );
