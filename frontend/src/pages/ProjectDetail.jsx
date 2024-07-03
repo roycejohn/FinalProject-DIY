@@ -12,22 +12,23 @@ const ProjectDetail = () => {
   const [isCoverImageModal, setIsCoverImageModal] = useState(false);
   const [modalImageIndex, setModalImageIndex] = useState(0);
   const [currentImages, setCurrentImages] = useState([]);
+  // Edit & Delete
+  const [editing, setEditing] = useState(false);
+  const [editedMaterials, setEditedMaterials] = useState([]);
+  const [editedSteps, setEditedSteps] = useState([]);
 
   // COMMENTS ------------------------------------
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]); // Add comments state
 
-  // Edit Delete
-  const [editingStepIndex, setEditingStepIndex] = useState(null);
-  const [editingMaterialIndex, setEditingMaterialIndex] = useState(null);
-  const [newStepDescription, setNewStepDescription] = useState("");
-  const [newMaterial, setNewMaterial] = useState("");
-
+  // Use Efferct
   useEffect(() => {
     const fetchProject = async () => {
       try {
         const result = await getProjectById(projectId);
         setProject(result);
+        setEditedMaterials(result.materials.split(",")); // ADDED
+        setEditedSteps(result.steps); // ADDED
       } catch (error) {
         console.error("Error fetching project:", error);
       }
@@ -65,7 +66,55 @@ const ProjectDetail = () => {
     );
   };
 
-// -----------------------------------   coments!!
+  // EDIT handler for  MATERIALS AND STEPS
+  const handleEditToggle = () => {
+    setEditing(!editing);
+  };
+
+  const handleSaveChanges = async () => {
+    try {
+      const updatedProject = {
+        ...project,
+        materials: editedMaterials.join(","),
+        steps: editedSteps,
+      };
+      const result = await updateProject(projectId, updatedProject);
+      setProject(result);
+      setEditing(false);
+    } catch (error) {
+      console.error("Error updating project:", error);
+    }
+  };
+
+  const handleCancelChanges = async () => {
+    setEditing(false);
+    setEditedMaterials(project.materials.split(","));
+    setEditedSteps(project.steps);
+  };
+
+  const handleMaterialChange = (index, value) => {
+    const updatedMaterials = [...editedMaterials];
+    updatedMaterials[index] = value;
+    setEditedMaterials(updatedMaterials);
+  };
+
+  const handleDeleteMaterial = (index) => {
+    const updatedMaterials = editedMaterials.filter((_, i) => i !== index);
+    setEditedMaterials(updatedMaterials);
+  };
+
+  const handleStepChange = (index, value) => {
+    const updatedSteps = [...editedSteps];
+    updatedSteps[index] = { ...updatedSteps[index], description: value };
+    setEditedSteps(updatedSteps);
+  };
+
+  const handleDeleteStep = (index) => {
+    const updatedSteps = editedSteps.filter((_, i) => i !== index);
+    setEditedSteps(updatedSteps);
+  };
+
+  // -----------------------------------   coments!!
   const handleCommentChange = (e) => {
     setComment(e.target.value);
   };
@@ -84,122 +133,11 @@ const ProjectDetail = () => {
       console.error("Error posting comment:", error);
     }
   };
-// -----------------------------------   coments!!
-
-
-  const handleEditStep = (index) => {
-    setEditingStepIndex(index);
-    setNewStepDescription(project.steps[index].description);
-  };
-
-  const handleSaveStep = async () => {
-    const updatedSteps = [...project.steps];
-    updatedSteps[editingStepIndex].description = newStepDescription;
-
-    try {
-      const updatedProject = { ...project, steps: updatedSteps };
-      const result = await updateProject(projectId, updatedProject); //  UPDATE steps
-      setProject(result);
-      setEditingStepIndex(null);
-    } catch (error) {
-      console.error("Error updating step:", error);
-    }
-  };
-
-  const handleDeleteStep = async (index) => {
-    const updatedSteps = project.steps.filter((_, i) => i !== index);
-
-    try {
-      const updatedProject = { ...project, steps: updatedSteps };
-      const result = await updateProject(projectId, updatedProject); // UPDATE - DELETE  steps
-      setProject(result);
-    } catch (error) {
-      console.error("Error deleting step:", error);
-    }
-  };
-
-  const handleEditMaterial = (index) => {
-    setEditingMaterialIndex(index);
-    setNewMaterial(project.materials.split(",")[index]);
-  };
-
-  const handleSaveMaterial = async () => {
-    const updatedMaterialsArray = project.materials.split(",");
-    updatedMaterialsArray[editingMaterialIndex] = newMaterial;
-    const updatedMaterials = updatedMaterialsArray.join(",");
-
-    try {
-      const updatedProject = { ...project, materials: updatedMaterials };
-      const result = await updateProject(projectId, updatedProject); // UPDATE materials
-      setProject(result);
-      setEditingMaterialIndex(null);
-    } catch (error) {
-      console.error("Error updating material:", error);
-    }
-  };
-
-  const handleDeleteMaterial = async (index) => {
-    const updatedMaterialsArray = project.materials
-      .split(",")
-      .filter((_, i) => i !== index);
-    const updatedMaterials = updatedMaterialsArray.join(",");
-
-    try {
-      const updatedProject = { ...project, materials: updatedMaterials };
-      const result = await updateProject(projectId, updatedProject); // UPDATE - DELETE  materials
-      setProject(result);
-    } catch (error) {
-      console.error("Error deleting material:", error);
-    }
-  };
+  // -----------------------------------   coments!!
 
   if (!project) {
     return <div>Loading...</div>;
   }
-
-  const materialsArray = project.materials.split(",");
-  const materialsList = [];
-  materialsArray.forEach((material, index) => {
-    materialsList.push(
-      <li key={index} className="bg-white  flex justify-between items-center  ">
-        {editingMaterialIndex === index ? (
-          <>
-            <input
-              type="text"
-              value={newMaterial}
-              onChange={(e) => setNewMaterial(e.target.value)}
-              className="text-gray-700 border p-2"
-            />
-
-            <button
-              onClick={handleSaveMaterial}
-              className="bg-green-500 text-white px-4 py-2 rounded"
-            >
-              Save
-            </button>
-          </>
-        ) : (
-          <>
-            <p className="text-gray-700">{material.trim()}</p>
-            <div>
-              <button
-                onClick={() => handleEditMaterial(index)}
-                className="bg-blue-500 text-white px-2 py-2 rounded mr-2"
-              >
-                Edit
-              </button>
-              <button
-                onClick={() => handleDeleteMaterial(index)}
-                className="bg-red-500 text-white px-2 py-2 rounded"
-              >
-                Delete
-              </button>
-            </div>
-          </>
-        )}
-      </li>
-    );
-  });
 
   return (
     <div className="container mx-auto max-w-5xl p-4">
@@ -213,49 +151,99 @@ const ProjectDetail = () => {
         />
       )}
       <p className="text-gray-700 mb-4">{project.description}</p>
-      <h2 className="text-xl font-semibold mb-2 text-center ">Materials</h2>
-      <ol className="list-decimal  space-y-4 p-4">{materialsList}</ol>
 
-      <h2 className="text-xl font-semibold mb-2 text-center">Steps</h2>
+      {/* ADDED */}
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-xl font-semibold mb-2 text-center ">Materials</h2>
+        {editing ? (
+          <>
+            <div className="flex flex-col mr-4 ">
+              <button
+                onClick={handleSaveChanges}
+                className="hover:bg-blue-300 bg-green-600 text-white px-2 py-1 rounded text-sm"
+              >
+                Save
+              </button>
+
+              <button
+                onClick={handleCancelChanges}
+                className="hover:bg-blue-300 mt-2 bg-stone-700 text-white px-2 py-1 rounded text-sm"
+              >
+                Cancel
+              </button>
+            </div>
+          </>
+        ) : (
+          <button
+            onClick={handleEditToggle}
+            className="hover:bg-blue-300 bg-green-600 text-white px-3 mr-4 py-1.5 rounded text-sm"
+          >
+            Edit
+          </button>
+        )}
+      </div>
+      {/* ADDED */}
+
+      {/* CHANGED 
+      <ol className="list-decimal  space-y-4 p-4">{materialsList}</ol>  */}
+      <ol className="list-decimal  space-y-4 p-4">
+        {editedMaterials.map((material, index) => (
+          <li
+            key={index}
+            className="bg-white flex justify-between items-center"
+          >
+            {editing ? (
+              <>
+                <input
+                  type="text"
+                  value={material}
+                  onChange={(e) => handleMaterialChange(index, e.target.value)}
+                  className="text-gray-700 border p-2 w-[85%]"
+                />
+                <button
+                  onClick={() => handleDeleteMaterial(index)}
+                  className="hover:bg-blue-300 bg-red-600 text-white px-2 py-1.5 rounded text-xs"
+                >
+                  Delete
+                </button>
+              </>
+            ) : (
+              <p className="text-gray-700">{material.trim()}</p>
+            )}
+          </li>
+        ))}
+      </ol>
+
+      {/* ADDED */}
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-xl font-semibold mb-2 text-center">Steps</h2>
+      </div>
+
       <div className="space-y-4">
-        {project.steps.map((step, index) => (
+        {editedSteps.map((step, index) => (
           <div key={index} className="bg-white rounded-lg shadow-md p-4">
             <h3 className="text-lg font-semibold mb-2">Step {index + 1}</h3>
-            {editingStepIndex === index ? (
+            {editing ? (
               <>
                 <textarea
                   className="w-full p-2 border rounded mb-2"
-                  value={newStepDescription}
-                  onChange={(e) => setNewStepDescription(e.target.value)}
+                  value={step.description}
+                  onChange={(e) => handleStepChange(index, e.target.value)}
                 />
-                <div className=" flex justify-end ">
+                <div className="flex justify-end">
                   <button
-                    onClick={handleSaveStep}
-                    className="bg-green-500 text-white px-4 py-2 rounded "
+                    onClick={() => handleDeleteStep(index)}
+                    className="hover:bg-blue-300 bg-red-600 text-white px-2.5 py-1.5 rounded text-xs"
                   >
-                    Save
+                    Delete
                   </button>
                 </div>
               </>
             ) : (
               <>
-                <div className="flex justify-between">
-                  <p className="text-gray-700 mb-2">{step.description}</p>
-                  <div>
-                    <button
-                      onClick={() => handleEditStep(index)}
-                      className="bg-blue-500 text-white px-2 py-2 rounded mr-2"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      onClick={() => handleDeleteStep(index)}
-                      className="bg-red-500 text-white px-2 py-2 rounded"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </div>
+                <p className="text-gray-700 mb-2 text-justify">
+                  {step.description}
+                </p>
               </>
             )}
             {step.images && step.images.length > 0 && (
