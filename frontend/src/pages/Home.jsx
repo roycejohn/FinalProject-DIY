@@ -8,8 +8,39 @@ import PopularImage1 from '../assets/popular1.png';
 import PopularImage2 from '../assets/popular2.png';
 import PopularImage3 from '../assets/popular3.png';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { getProjects } from '../hooks/apiHook.js';
 
 function Home() {
+
+  const [projects, setProjects] = useState([]);
+  const [filteredProjects, setFilteredProjects] = useState([]);
+
+
+console.log(projects)
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await getProjects();
+        setProjects(result);
+        setFilteredProjects(result);
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const filterProjects = (category) => {
+    if (category === 'All') {
+      setFilteredProjects(projects);
+    } else {
+      const filtered = projects.filter(project => project.category === category);
+      setFilteredProjects(filtered);
+    }
+    setActiveCategory(category);
+  };
+
   return (
     <div className="home">
       <div className="hero">
@@ -20,6 +51,7 @@ function Home() {
         </div>
       </div>
 
+{/* RECENT PROJECT */}
       <div className="recent-projects">
         <h1>Recent Projects</h1>
         <div className="project-cards">
@@ -57,6 +89,7 @@ function Home() {
               </div>
             </div>
           </div>
+{/* DIY of DAY RANDOM PROJECT */}
 
           <div className="right">
             <div className="project-card big">
@@ -73,6 +106,7 @@ function Home() {
         </div>
       </div>
 
+{/* MOST POPULAR */}
       <div className="most-popular">
         <h1>Most Popular</h1>
         <div className="popular-cards">
