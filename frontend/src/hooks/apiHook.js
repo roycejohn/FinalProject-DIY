@@ -30,3 +30,14 @@ export const createProject = async (formData) => {
     throw error;
   }
 };
+
+
+// 
+export const updateProject = async (projectId, updatedProject) => {
+  try {
+    const response = await axios.put(`${API_URL}/${projectId}`, updatedProject);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
