@@ -55,7 +55,7 @@ function Profile({ user }) {
                 <span>My Settings</span>
               </button>
 
-              <div className="hidden group-hover:block group-hover:relative origin-top-right  left-0 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+              <div className="hidden group-hover:block group-hover:absolute origin-top-right  left-0  w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                 <div
                   className="py-1"
                   role="menu"
