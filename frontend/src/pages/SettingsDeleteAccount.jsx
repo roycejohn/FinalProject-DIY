@@ -11,7 +11,7 @@ const DeleteAccount = ({ user, setUser }) => {
     setLoading(true);
     try {
       const response = await fetch(
-        `https://diy-server.onrender.com/users/delete/${user._id}`,
+        `http://localhost:8000/users/delete/${user._id}`,
         {
           method: "DELETE",
           headers: {

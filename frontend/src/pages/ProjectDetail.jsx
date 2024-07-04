@@ -93,6 +93,11 @@ const ProjectDetail = () => {
   return (
     <div className='container mx-auto max-w-5xl p-4'>
       <h1 className='text-2xl font-bold mb-4'>{project.title}</h1>
+      <div className="text-sm">
+        <p className="text-gray-700 mb-2 font-semibold">created by: {project.username}</p>
+        <p className="text-gray-500 mb-2">created on {new Date(project.createdAt).toLocaleDateString()}</p>
+        {/* <p className="text-gray-500 mb-4">updated on {new Date(project.updatedAt).toLocaleDateString()}</p> */}
+      </div>
       {project.coverImage && (
         <img
           src={project.coverImage}

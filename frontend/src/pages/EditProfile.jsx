@@ -42,7 +42,7 @@ const EditProfile = ({ user, setUser }) => {
     try {
 
       const response = await fetch(
-        `https://diy-server.onrender.com/users/update/${user._id}`,
+        `http://localhost:8000/users/update/${user._id}`,
         {
           method: "PUT",
           // headers: { "Content-Type": "application/json" },

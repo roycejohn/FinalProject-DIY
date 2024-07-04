@@ -47,9 +47,9 @@ function App() {
   }
 
   return (
-    <div>
+    <div className='app-container'>
       <Header user={user} setUser={setUser} />
-      <div>
+      <div className='content'>
         <Routes>
           <Route path="/" element = {<Home />} />
           <Route path="/projects" element = {<ProjectList />} />

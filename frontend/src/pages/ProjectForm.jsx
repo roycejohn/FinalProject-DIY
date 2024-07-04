@@ -283,7 +283,7 @@ const ProjectForm = () => {
     formData.append("materials", formState.materials);
     formData.append("category", formState.category);
     formData.append("coverImage", formState.coverImage);
-    formData.append("username", username); // Include username in FormData
+    formData.append("username", username);
 
     formState.steps.forEach((step, index) => {
       formData.append(`steps[${index}][title]`, step.title);

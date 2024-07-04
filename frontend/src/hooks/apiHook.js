@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_URL = 'https://diy-server.onrender.com/api/projects';
+// const API_URL = 'https://diy-server.onrender.com/api/projects';
+const API_URL = 'http://localhost:8000/api/projects';
 
 export const getProjects = async () => {
   try {
