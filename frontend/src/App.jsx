@@ -14,6 +14,7 @@ import ProjectList from './pages/ProjectList.jsx'
 import ProjectDetail from './pages/ProjectDetail.jsx'
 import EditProfile from './pages/EditProfile.jsx'
 import AccountDeleted from './pages/AccountDeleted.jsx'
+import Discussion from './pages/Discussion.jsx'
 
 function App() {
  
@@ -44,6 +45,7 @@ function App() {
           <Route path="/projects" element = {<ProjectList />} />
           <Route path="/projects/:projectId" element= {<ProjectDetail />} />
           <Route path="/community" element = {<Community />} />
+          <Route path="/discussion" element = {<Discussion user={user} setUser={setUser}/>} />
           <Route path="/about" element = {<About />} />
           <Route path="/profile" element = {user ? <Profile user={user} /> : <Navigate to="/login" />} />
           <Route path="/login" element = {<Login setUser={setUser} />} />
