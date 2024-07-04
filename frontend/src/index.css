@@ -381,7 +381,7 @@
 
 /* Profile-page starts*/
 
-.profile {
+/* .profile {
   padding-right: 80px;
   padding-left:80px;
   padding-top: 40px;
@@ -392,13 +392,30 @@
   margin-bottom: 40px;
   align-items: center;
   display: block;
+} */
+/* .profile-content {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 40px; 
+} */
+
+.profile {
+  padding: 40px 80px;
+  max-width: 1080px;
+  margin: 0 auto; 
+  align-items: center;
+  display: flex; 
+  flex-direction: column; 
 }
 
 .profile-content {
   display: flex;
-  flex-wrap: wrap; 
-  gap: 40px; 
+  flex-wrap: wrap;
+  gap: 40px;
+  width: 100%; 
+  justify-content: center; 
 }
+
 
 .left-section {
   flex: 0 0 240px; 
