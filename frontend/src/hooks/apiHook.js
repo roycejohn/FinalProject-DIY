@@ -37,3 +37,24 @@ export const createProject = async (formData, token) => {
     throw error;
   }
 };
+
+
+export const updateProject = async (projectId, updatedProject) => {
+  try {
+    const response = await axios.put(`${API_URL}/${projectId}`, updatedProject);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// Most Popular Projects Hook
+export const getMostPopularProjects = async () => {
+  try{
+    const response = await axios.get(`${API_URL}/popular`)
+    return response.data
+  }catch(error){
+    console.error('Error creating project:', error);
+    throw error;
+  }
+}

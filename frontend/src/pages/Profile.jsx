@@ -99,7 +99,7 @@ function Profile({ user }) {
                 <span>My Settings</span>
               </button>
 
-              <div className="hidden group-hover:block group-hover:absolute origin-top-right  left-0 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+              <div className="hidden group-hover:block group-hover:relative origin-top-right  left-0 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                 <div
                   className="py-1"
                   role="menu"
@@ -108,21 +108,21 @@ function Profile({ user }) {
                 >
                   <Link
                     to="/email"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    className="block px-4 py-2 text-sm text-gray-900 hover:bg-gray-100"
                     role="menuitem"
                   >
                     Edit email
                   </Link>
                   <Link
                     to="/password"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    className="block px-4 py-2 text-sm text-gray-900 hover:bg-gray-100"
                     role="menuitem"
                   >
                     Edit Password
                   </Link>
                   <Link
                     to="/delete-account"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    className="block px-4 py-2 text-sm text-gray-900 hover:bg-gray-100"
                     role="menuitem"
                   >
                     Delete Account

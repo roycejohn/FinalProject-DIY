@@ -382,9 +382,16 @@
 /* Profile-page starts*/
 
 .profile {
-  padding: 40px;
+  padding-right: 80px;
+  padding-left:80px;
+  padding-top: 40px;
+  padding-bottom: 40px;
   max-width: 1080px;
-  margin: 0 auto;
+  margin-right: 80px;
+  margin-left: 80px;
+  margin-bottom: 40px;
+  align-items: center;
+  display: block;
 }
 
 .profile-content {
@@ -395,7 +402,7 @@
 
 .left-section {
   flex: 0 0 240px; 
-  margin-right: 40px;
+  margin-right: 80px;
 }
 
 .right-section {
@@ -414,18 +421,17 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start; 
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 12px;
 }
 
 .profile-button {
-  padding: 8px 16px;
+  padding: 8px 20px;
   font-size: 12px;
   font-weight: lighter;
   color: #171818;
   background-color: #ffffff;
   text-decoration: none;
-  border: 1.2px solid #171818;
+  border: 1px solid #989898;
   border-radius: 12px;
   transition: background-color 0.3s;
   display: inline-flex;
@@ -433,9 +439,9 @@
 }
 
 .profile-button img {
-  width: 8px;
-  height: 8px;
-  margin-right: 5px;
+  width: 10px;
+  height: 10px;
+  margin-right: 10px;
 }
 
 .profile-button span {
@@ -443,46 +449,42 @@
 }
 
 .profile-button:hover {
-  background-color: #898989;
+  background-color: #d0d0d0;
 }
 
 .user-name {
-  margin-top: 10px;
-  font-size: 20px;
+  font-size: 24px;
 }
 
 .user-join-date {
-  margin-top: 5px;
+  margin-top: 10px;
   font-size: 12px;
 }
 
 .profile-description {
-  margin-top: 20px;
+  margin-top: 10px;
   font-size: 16px;
 }
 
 .projects-section {
-  margin-top: 20px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 40px;
 }
 
 .projects-section h2 {
-  margin-top: 40px;
-  padding-bottom: 20px;
+  margin-top: 20px;
   font-size: 24px;
   font-weight: 600;
+  padding-bottom: 20px;
 }
 
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
-  gap: 10px;
+  gap: 5px;
 }
 
 .project-card {
-  padding: 20px;
-  background-color: #ffffff;
+  padding: 10px;
 }
 
 .project-card img {
@@ -504,7 +506,8 @@
 }
 
 .see-more-container {
-  margin-top: 40px;
+  margin-bottom: 40px;
+  padding-bottom: 40px;
   text-align: right;
 }
 
@@ -514,6 +517,7 @@
   color: #171818;
   text-decoration: underline;
   transition: background-color 0.3s;
+
 }
 
 .see-more-link:hover {
