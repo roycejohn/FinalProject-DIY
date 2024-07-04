@@ -2,9 +2,8 @@ import PersonIcon from "../assets/personicon.jpg";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-
 const Discussion = ({ user }) => {
-   const [comment, setComment] = useState('');
+  const [comment, setComment] = useState('');
   const [comments, setComments] = useState([]);
   const [registeredUsers, setRegisteredUsers] = useState([]);
   const [editCommentIndex, setEditCommentIndex] = useState(null);
@@ -18,6 +17,15 @@ const Discussion = ({ user }) => {
       })
       .catch(error => {
         console.error('Error fetching registered users:', error);
+      });
+
+    // Fetch the list of discussions when the component mounts
+    axios.get('http://localhost:8000/discussions/')
+      .then(response => {
+        setComments(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching discussions:', error);
       });
   }, []);
 
@@ -41,28 +49,44 @@ const Discussion = ({ user }) => {
       return;
     }
 
-    // Proceed to post the comment if the user is valid
     if (editCommentIndex !== null) {
-      // Edit the comment
-      const updatedComments = comments.map((c, index) =>
-        index === editCommentIndex ? { ...c, text: comment } : c
-      );
-      setComments(updatedComments);
-      setEditCommentIndex(null);
-    } else if (replyCommentIndex !== null) {
-      // Reply to the comment
-      const updatedComments = comments.map((c, index) =>
-        index === replyCommentIndex
-          ? { ...c, replies: [...(c.replies || []), { text: comment, username: user.username }] }
-          : c
-      );
-      setComments(updatedComments);
-      setReplyCommentIndex(null);
+      // Edit an existing comment
+      const commentToUpdate = comments[editCommentIndex];
+      const updatedComment = {
+        ...commentToUpdate,
+        text: comment,
+      };
+      axios.put(`http://localhost:8000/discussions/${commentToUpdate._id}`, updatedComment)
+        .then(response => {
+          const updatedComments = comments.map((c, index) =>
+            index === editCommentIndex ? response.data : c
+          );
+          setComments(updatedComments);
+          setEditCommentIndex(null);
+          setComment(''); // Clear the textarea
+        })
+        .catch(error => {
+          console.error('Error updating comment:', error);
+        });
     } else {
       // Add a new comment
-      setComments([...comments, { text: comment, username: user.username }]);
+      const newComment = {
+        text: comment,
+        username: user.username,
+        replies: [],
+        likes: 0,
+        createdAt: new Date(),
+      };
+
+      axios.post('http://localhost:8000/discussions/', newComment)
+        .then(response => {
+          setComments([...comments, response.data]);
+          setComment(''); // Clear the textarea
+        })
+        .catch(error => {
+          console.error('Error posting comment:', error);
+        });
     }
-    setComment('');
   };
 
   const handleEditComment = (index) => {
@@ -71,7 +95,14 @@ const Discussion = ({ user }) => {
   };
 
   const handleDeleteComment = (index) => {
-    setComments(comments.filter((_, i) => i !== index));
+    const commentToDelete = comments[index];
+    axios.delete(`http://localhost:8000/discussions/${commentToDelete._id}`)
+      .then(() => {
+        setComments(comments.filter((_, i) => i !== index));
+      })
+      .catch(error => {
+        console.error('Error deleting comment:', error);
+      });
   };
 
   const handleReplyComment = (index) => {
@@ -105,7 +136,11 @@ const Discussion = ({ user }) => {
           </p>
           <div className='flex justify-between'>
             <button className='bg-blue-500 text-white rounded p-2 mt-2'
-              onClick={() => setComment('')}>
+              onClick={() => {
+                setComment('');
+                setEditCommentIndex(null);
+                setReplyCommentIndex(null);
+              }}>
               Cancel
             </button>
             <button className='bg-blue-500 text-white rounded p-2 mt-2' onClick={handlePostComment}>
