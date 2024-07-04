@@ -4,6 +4,7 @@ import Community3 from "../assets/community3.jpg";
 import Community4 from "../assets/community_2.jpg";
 import Ladyicon from "../assets/ladyicon.png";
 import Genicon from "../assets/Genicon.png";
+import { Link } from "react-router-dom";
 
 function Community() {
   return (
@@ -42,9 +43,15 @@ function Community() {
             className='w-1/3 h-48 object-cover'
           />
           <div className='p-4 w-1/2'>
-            <h3 className='text-xl font-semibold'>Introduce Yourself</h3>
+            <div>
+              <h3 className='text-xl font-semibold'>Introduce Yourself</h3>
+             
+            </div>
             <p className='text-gray-600'>
-              Please introduce and have a discussion about DIY project.
+               <Link to='/discussion' className='text-blue-500 underline'>
+                Please introduce and have a discussion about DIY project.
+              </Link>
+             
             </p>
             <div className='mt-4 flex items-center'>
               <img
@@ -77,7 +84,9 @@ function Community() {
               Share Your Thoughts & Ideas
             </h3>
             <p className='text-gray-600'>
+               <Link to='/discussion' className='text-blue-500 underline'>
               Please share your thoughts and ideas related to DIY project!
+               </Link>
             </p>
             <div className='mt-4 flex items-center'>
               <img
@@ -106,12 +115,11 @@ function Community() {
             className='w-1/3 h-48 object-cover'
           />
           <div className='p-4 w-1/2'>
-            <h3 className='text-xl font-semibold'>
-              Q&A Discussion
-            </h3>
+            <h3 className='text-xl font-semibold'>Q&A Discussion</h3>
             <p className='text-gray-600'>
-              Please get clarified with your questions
-              related to DIY project.
+                <Link to='/discussion' className='text-blue-500 underline'>
+              Please get clarified with your questions related to DIY project.
+              </Link>
             </p>
             <div className='mt-4 flex items-center'>
               <img
