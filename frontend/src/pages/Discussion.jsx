@@ -8,6 +8,7 @@ const Discussion = ({ user }) => {
   const [registeredUsers, setRegisteredUsers] = useState([]);
   const [editCommentIndex, setEditCommentIndex] = useState(null);
   const [replyCommentIndex, setReplyCommentIndex] = useState(null);
+  const [likedComments, setLikedComments] = useState({});
 
   useEffect(() => {
     // Fetch the list of registered users when the component mounts
@@ -110,6 +111,70 @@ const Discussion = ({ user }) => {
     setComment('');
   };
 
+  const handleLikeComment = (index) => {
+    const commentToLike = comments[index];
+
+    // Check if the current user is the author of the comment
+    if (commentToLike.username === user.username) {
+      alert('Error: You cannot like your own comment.');
+      return;
+    }
+
+    const updatedComment = {
+      ...commentToLike,
+      likes: commentToLike.likes + 1,
+    };
+
+    axios.put(`http://localhost:8000/discussions/${commentToLike._id}`, updatedComment)
+      .then(response => {
+        const updatedComments = comments.map((c, i) =>
+          i === index ? response.data : c
+        );
+        setComments(updatedComments);
+        setLikedComments({ ...likedComments, [commentToLike._id]: true });
+      })
+      .catch(error => {
+        console.error('Error liking comment:', error);
+      });
+  };
+
+  const handlePostReply = (index) => {
+    const commentToReply = comments[index];
+
+    // Check if the current user is the author of the comment
+    if (commentToReply.username === user.username) {
+      alert('Error: You cannot reply to your own comment.');
+      return;
+    }
+
+    const replyText = prompt('Enter your reply:');
+    if (!replyText) {
+      return;
+    }
+
+    const newReply = {
+      text: replyText,
+      username: user.username,
+      createdAt: new Date(),
+    };
+
+    const updatedComment = {
+      ...commentToReply,
+      replies: [...commentToReply.replies, newReply],
+    };
+
+    axios.put(`http://localhost:8000/discussions/${commentToReply._id}`, updatedComment)
+      .then(response => {
+        const updatedComments = comments.map((c, i) =>
+          i === index ? response.data : c
+        );
+        setComments(updatedComments);
+      })
+      .catch(error => {
+        console.error('Error replying to comment:', error);
+      });
+  };
+
   return (
     <div className='max-w-4xl mx-auto px-4'>
       <h3 className='text-xl font-semibold'>Discussion Page</h3>
@@ -176,11 +241,18 @@ const Discussion = ({ user }) => {
               </div>
               <div className='flex justify-between items-center mt-4'>
                 <div className='flex space-x-4'>
-                  <button className='text-blue-500 hover:text-blue-700 flex items-center'>
+                  <button
+                    className={`text-blue-500 hover:text-blue-700 flex items-center ${likedComments[comment._id] ? 'text-gray-400' : ''}`}
+                    onClick={() => handleLikeComment(index)}
+                    disabled={likedComments[comment._id]}
+                  >
                     <i className='fas fa-thumbs-up'></i>
-                    <span className='ml-1'>Like</span>
+                    <span className='ml-1'>Like ({comment.likes})</span>
                   </button>
-                  <button className='text-blue-500 hover:text-blue-700 flex items-center' onClick={() => handleReplyComment(index)}>
+                  <button
+                    className='text-blue-500 hover:text-blue-700 flex items-center'
+                    onClick={() => handlePostReply(index)}
+                  >
                     <i className='fas fa-reply'></i>
                     <span className='ml-1'>Reply</span>
                   </button>
