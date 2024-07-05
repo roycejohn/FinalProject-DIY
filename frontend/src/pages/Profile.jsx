@@ -1,4 +1,5 @@
 
+
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 // import ProfilePicture from '../assets/pp.png';
@@ -7,11 +8,11 @@ import EditIcon from '../assets/edit-icon.svg';
 import SettingsIcon from '../assets/settings-icon.svg';
 import { getProjects } from '../hooks/apiHook.js';
 
-
 function Profile({ user }) {
   //console.log(user)
   const [projects, setProjects] = useState([]);
   const [isSettingsMenuOpen, setIsSettingsMenuOpen] = useState(false);
+  const [sortOrder, setSortOrder] = useState('desc');
 
   const toggleSettingsMenu = () => {
     setIsSettingsMenuOpen(!isSettingsMenuOpen);
@@ -29,13 +30,6 @@ function Profile({ user }) {
     };
     fetchUserProjects();
   }, [user.username]);
-
-  // const formatDateTime = (dateTime) => {
-  //   const date = new Date(dateTime);
-  //   const dateString = date.toLocaleDateString();
-  //   const timeString = date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-  //   return `${dateString} at ${timeString}`;
-  // };
 
   const formatDateTime = (dateTime) => {
     const date = new Date(dateTime);
@@ -60,6 +54,15 @@ function Profile({ user }) {
     return "just now";
   };
 
+  const handleSortChange = (event) => {
+    setSortOrder(event.target.value);
+  };
+
+  const sortedProjects = [...projects].sort((a, b) => {
+    const dateA = new Date(a.createdAt);
+    const dateB = new Date(b.createdAt);
+    return sortOrder === 'asc' ? dateA - dateB : dateB - dateA;
+  });
 
   return (
     <div className="profile h-screen">
@@ -91,8 +94,7 @@ function Profile({ user }) {
                 <span>Edit Profile</span>
               </button>
             </Link>
-            {/* SETINGS  */}
-
+            {/* SETTINGS  */}
             <div onClick={toggleSettingsMenu} className="relative inline-block text-left group ">
               <button className="profile-button">
                 <img
@@ -106,9 +108,7 @@ function Profile({ user }) {
               </button>
               {isSettingsMenuOpen && (
                 <div className="absolute  left-0 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                  <div
-                  
-                  >
+                  <div>
                     <Link
                       to="/email"
                       className="block px-4 py-2 text-sm text-gray-900 hover:bg-gray-100"
@@ -135,8 +135,7 @@ function Profile({ user }) {
               )}
             </div>
           </div>
-          {/* SETINGS  */}
-
+          {/* SETTINGS  */}
           <div className="mt-20 absolute">       {/* Added div to center User and About section  */}
             <div className="user-name">
               <h2 className="font-semibold">
@@ -147,7 +146,6 @@ function Profile({ user }) {
               <p>Joined May 2022</p>
             </div>
             <div className="profile-description">
-              {/*  <h6><strong>{user.username}</strong>!</h6>  */}
               <h6 className="italic">{user.about}</h6>
             </div>
           </div>
@@ -156,8 +154,17 @@ function Profile({ user }) {
     
       <div className="projects-section mt-8 relative">
         <h2 className="text-xl font-semibold mb-4">My Projects</h2>
+        
+        <div className="mb-4">
+          <label htmlFor="sortOrder" className="mr-2">Sort by date:</label>
+          <select id="sortOrder" value={sortOrder} onChange={handleSortChange} className="p-2 border rounded">
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+          </select>
+        </div>
+
         <div className="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {projects.slice(0, 3).map((project) => (
+          {sortedProjects.slice(0, 3).map((project) => (
             <Link key={project._id} to={`/projects/${project._id}`} className="project-card-link">
               <div className="project-card bg-white shadow-md rounded-lg overflow-hidden">
                 <img src={project.coverImage} alt={project.title} className="project-image w-full h-48 object-cover" />

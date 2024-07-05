@@ -12,7 +12,7 @@ const Discussion = ({ user }) => {
 
   useEffect(() => {
     // Fetch the list of registered users when the component mounts
-    axios.get('http://localhost:8000/users/')
+    axios.get('https://diy-server.onrender.com/users/')
       .then(response => {
         setRegisteredUsers(response.data);
       })
@@ -21,7 +21,7 @@ const Discussion = ({ user }) => {
       });
 
     // Fetch the list of discussions when the component mounts
-    axios.get('http://localhost:8000/discussions/')
+    axios.get('https://diy-server.onrender.com/discussions/')
       .then(response => {
         setComments(response.data);
       })
@@ -57,7 +57,7 @@ const Discussion = ({ user }) => {
         ...commentToUpdate,
         text: comment,
       };
-      axios.put(`http://localhost:8000/discussions/${commentToUpdate._id}`, updatedComment)
+      axios.put(`https://diy-server.onrender.com/discussions/${commentToUpdate._id}`, updatedComment)
         .then(response => {
           const updatedComments = comments.map((c, index) =>
             index === editCommentIndex ? response.data : c
@@ -79,7 +79,7 @@ const Discussion = ({ user }) => {
         createdAt: new Date(),
       };
 
-      axios.post('http://localhost:8000/discussions/', newComment)
+      axios.post('https://diy-server.onrender.com/discussions/', newComment)
         .then(response => {
           setComments([...comments, response.data]);
           setComment(''); // Clear the textarea
@@ -97,7 +97,7 @@ const Discussion = ({ user }) => {
 
   const handleDeleteComment = (index) => {
     const commentToDelete = comments[index];
-    axios.delete(`http://localhost:8000/discussions/${commentToDelete._id}`)
+    axios.delete(`https://diy-server.onrender.com/discussions/${commentToDelete._id}`)
       .then(() => {
         setComments(comments.filter((_, i) => i !== index));
       })
@@ -125,7 +125,7 @@ const Discussion = ({ user }) => {
       likes: commentToLike.likes + 1,
     };
 
-    axios.put(`http://localhost:8000/discussions/${commentToLike._id}`, updatedComment)
+    axios.put(`https://diy-server.onrender.com/discussions/${commentToLike._id}`, updatedComment)
       .then(response => {
         const updatedComments = comments.map((c, i) =>
           i === index ? response.data : c
@@ -163,7 +163,7 @@ const Discussion = ({ user }) => {
       replies: [...commentToReply.replies, newReply],
     };
 
-    axios.put(`http://localhost:8000/discussions/${commentToReply._id}`, updatedComment)
+    axios.put(`https://diy-server.onrender.com/discussions/${commentToReply._id}`, updatedComment)
       .then(response => {
         const updatedComments = comments.map((c, i) =>
           i === index ? response.data : c
