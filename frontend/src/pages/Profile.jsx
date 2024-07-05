@@ -11,6 +11,11 @@ import { getProjects } from '../hooks/apiHook.js';
 function Profile({ user }) {
   //console.log(user)
   const [projects, setProjects] = useState([]);
+  const [isSettingsMenuOpen, setIsSettingsMenuOpen] = useState(false);
+
+  const toggleSettingsMenu = () => {
+    setIsSettingsMenuOpen(!isSettingsMenuOpen);
+  };
 
   useEffect(() => {
     const fetchUserProjects = async () => {
@@ -88,52 +93,51 @@ function Profile({ user }) {
             </Link>
             {/* SETINGS  */}
 
-            <div className="relative inline-block text-left group ">
+            <div onClick={toggleSettingsMenu} className="relative inline-block text-left group ">
               <button className="profile-button">
                 <img
                   src={SettingsIcon}
                   alt="Settings"
                   className="icon"
                   style={{ width: "12px", height: "12px" }}
+                  onClick={toggleSettingsMenu}
                 />
                 <span>My Settings</span>
               </button>
-
-              <div className="hidden group-hover:block group-hover:relative origin-top-right  left-0 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                <div
-                  className="py-1"
-                  role="menu"
-                  aria-orientation="vertical"
-                  aria-labelledby="options-menu"
-                >
-                  <Link
-                    to="/email"
-                    className="block px-4 py-2 text-sm text-gray-900 hover:bg-gray-100"
-                    role="menuitem"
+              {isSettingsMenuOpen && (
+                <div className="absolute  left-0 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                  <div
+                  
                   >
-                    Edit email
-                  </Link>
-                  <Link
-                    to="/password"
-                    className="block px-4 py-2 text-sm text-gray-900 hover:bg-gray-100"
-                    role="menuitem"
-                  >
-                    Edit Password
-                  </Link>
-                  <Link
-                    to="/delete-account"
-                    className="block px-4 py-2 text-sm text-gray-900 hover:bg-gray-100"
-                    role="menuitem"
-                  >
-                    Delete Account
-                  </Link>
+                    <Link
+                      to="/email"
+                      className="block px-4 py-2 text-sm text-gray-900 hover:bg-gray-100"
+                      role="menuitem"
+                    >
+                      Edit email
+                    </Link>
+                    <Link
+                      to="/password"
+                      className="block px-4 py-2 text-sm text-gray-900 hover:bg-gray-100"
+                      role="menuitem"
+                    >
+                      Edit Password
+                    </Link>
+                    <Link
+                      to="/delete-account"
+                      className="block px-4 py-2 text-sm text-gray-900 hover:bg-gray-100"
+                      role="menuitem"
+                    >
+                      Delete Account
+                    </Link>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
           {/* SETINGS  */}
 
-          <div className="mt-20">       {/* Added div to center User and About section  */}
+          <div className="mt-20 absolute">       {/* Added div to center User and About section  */}
             <div className="user-name">
               <h2 className="font-semibold">
                 {user.firstName} {user.lastName}
@@ -166,7 +170,7 @@ function Profile({ user }) {
             </Link>
           ))}
         </div>
-        <div className="see-more-container mt-4 absolute bottom-0 left-0 w-full">
+        <div className="see-more-container mt-12 relative bottom-0 left-0 w-full">
           <Link to="/seemoreprojects" className="see-more-link text-blue-500 hover:underline text-center block">
             See more projects
           </Link>
