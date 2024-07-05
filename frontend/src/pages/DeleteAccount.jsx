@@ -36,12 +36,12 @@ const DeleteAccount = ({ user, setUser }) => {
   };
 
   return (
-    <div>
-      <p>Are you sure you want to delete your account?</p>
+    <div className="flex flex-col items-center justify-center h-screen">
+      <p className="mb-4 text-center">Are you sure you want to delete your account?</p>
       <button
         onClick={handleDeleteAccount}
         disabled={loading}
-        className="w-full bg-black text-xl text-white py-2 rounded-lg hover:bg-indigo-700 transition duration-300"
+        className="bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-100 transition duration-300"
       >
         {loading ? "Deleting..." : "Delete Account"}
       </button>
@@ -50,3 +50,4 @@ const DeleteAccount = ({ user, setUser }) => {
 };
 
 export default DeleteAccount;
+

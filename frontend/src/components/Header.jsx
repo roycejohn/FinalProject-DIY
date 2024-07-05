@@ -23,8 +23,8 @@ const Header = ({ user, setUser }) => {
     setIsProfileMenuOpen(!isProfileMenuOpen);
   };
   const handleLogout = () => {
-    localStorage.removeItem("token")
-    localStorage.removeItem("user")
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
     setUser(false);
   }; // Logout added
 
@@ -58,7 +58,7 @@ const Header = ({ user, setUser }) => {
             </a>
           </nav>
 
-    {/* Added code Check for User !! */}
+          {/* Added code Check for User !! */}
           {!user ? (
             <>
               <Link to="/login" className="hover:text-gray-100">
@@ -83,48 +83,63 @@ const Header = ({ user, setUser }) => {
                   />
                   <span className="ml-6">Create</span>
                 </button>
-
-                <div className="relative">
-                  <img
-                    src={ProfileIcon}
-                    alt="Profile"
-                    className="w-8 h-8 cursor-pointer hover:shadow-lg"
-                    onClick={toggleProfileMenu}
-                  />
-
-                  {isProfileMenuOpen && (
-                    <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10">
-                      <Link
-                        to="/profile"
-                        className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                      >
-                        My Profile
-                      </Link>
-                      <Link
-                        to="/myprojects"
-                        className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                      >
-                        My Projects
-                      </Link>
-                      <Link
-                        to="/settings"
-                        className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                      >
-                        Settings
-                      </Link>
-                      <button
-                        onClick={handleLogout}
-                        className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
-                      >
-                        Log Out
-                      </button>
+                <div onClick={toggleProfileMenu}>
+                  {" "}
+    {/* ADDED so when clicking on username too will toggle menu */}
+                  <div className="relative flex items-center ">
+                    <img
+                      src={ProfileIcon}
+                      alt="Profile"
+                      className="w-8 h-8 cursor-pointer hover:shadow-lg "
+                      onClick={toggleProfileMenu}
+                    />
+                    {/* Added username on header!! */}
+                    <div className="ml-4 cursor-pointer ">
+                      <h6 className="text-sm font-bold text-zinc-500 ">
+                        {" "}
+                        Hello{" "}
+                        <strong className="text-red-400">
+                          {user.username}
+                        </strong>
+                      </h6>
                     </div>
-                  )}
+
+                    {/* Added username on header!! */}
+
+                    {isProfileMenuOpen && (
+                      <div className="absolute  mt-52 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10">
+                        <Link
+                          to="/profile"
+                          className="block px-4 py-2 text-gray-700 hover:bg-blue-100"
+                        >
+                          My Profile
+                        </Link>
+                        <Link
+                          to="/myprojects"
+                          className="block px-4 py-2 text-gray-700 hover:bg-gray-200"
+                        >
+                          My Projects
+                        </Link>
+                        <Link
+                          to="/settings"
+                          className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                        >
+                          Settings
+                        </Link>
+                        <button
+                          onClick={handleLogout}
+                          className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
+                        >
+                          Log Out
+                        </button>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </>
           )}
-     {/* End of Check User */}
+          {/* End of Check User */}
 
           <div className="md:hidden mx-6">
             <button
@@ -149,7 +164,7 @@ const Header = ({ user, setUser }) => {
         </div>
 
         {isMenuOpen && (
-          <div className="md:hidden py-2 px-4">
+          <div className="md:hidden py-2 px-4 ">
             <div className="nav-list">
               <Link
                 to="/"
@@ -163,40 +178,95 @@ const Header = ({ user, setUser }) => {
               >
                 Projects
               </Link>
-              <Link to="/community" className="hover:text-gray-100">
+
+              <Link
+                to="/community"
+                className="block py-2 px-4 font-bold hover:bg-blue-300 w-32 rounded-lg  " // added rounded-lg
+              >
                 Community
               </Link>
 
               <Link
                 to="/about"
-                className="block py-2 px-4 font-bold hover:bg-gray-500"
+                className="block py-2 px-4 font-bold hover:bg-blue-300 w-32" // added w-32 hoover blue
               >
                 About
               </Link>
-              <Link
-                to="/login"
-                className="block py-2 px-4 font-bold hover:bg-gray-500"
-              >
-                Login
-              </Link>
-              <Link
-                to="/register"
-                className="block py-2 px-4 font-bold hover:bg-gray-500"
-              >
-                Register
-              </Link>
-            </div>
-            <div className="sign-list flex justify-center mt-2">
-              <Link to="/profile">
-                <img
-                  src={ProfileIcon}
-                  alt="Profile"
-                  className="w-8 h-8 cursor-pointer hover:shadow-lg"
-                />
-              </Link>
+              {/* Check for User on small screen  !! */}
+              {!user ? (
+                <>
+                  <Link
+                    to="/login"
+                    className="block py-2 px-4 font-bold hover:bg-gray-500 "
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    to="/register"
+                    className="block py-2 px-4 font-bold hover:bg-gray-500 hover:bg-blue-300"
+                  >
+                    Register
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <div className="flex flex-col  space-y-4 px-4 text-gray-700 ">
+                    <button
+                      onClick={toggleModal}
+                      className="relative flex items-center w-28 bg-white border-2 border-gray-700 focus:outline-none px-4 py-2 rounded-xl hover:bg-blue-300"
+                    >
+                      <img
+                        src={PlusIcon}
+                        alt="Create"
+                        className="w-4 h-4 text-gray-800 absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none"
+                      />
+                      <span className="ml-4">Create</span>
+                    </button>
+
+                    <div className="relative">
+                      <img
+                        src={ProfileIcon}
+                        alt="Profile"
+                        className="w-8 h-8 cursor-pointer hover:shadow-lg"
+                        onClick={toggleProfileMenu}
+                      />
+
+                      {isProfileMenuOpen && (
+                        <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10">
+                          <Link
+                            to="/profile"
+                            className="block px-4 py-2 text-gray-700 hover:bg-blue-300"
+                          >
+                            My Profile
+                          </Link>
+                          <Link
+                            to="/myprojects"
+                            className="block px-4 py-2 text-gray-700 hover:bg-blue-300"
+                          >
+                            My Projects
+                          </Link>
+                          <Link
+                            to="/settings"
+                            className="block px-4 py-2 text-gray-700 hover:bg-blue-300"
+                          >
+                            Settings
+                          </Link>
+                          <button
+                            onClick={handleLogout}
+                            className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-blue-300"
+                          >
+                            Log Out
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         )}
+        {/* End of Check User */}
         {isModalOpen && (
           <div className="fixed inset-0 flex items-center justify-center z-50">
             <div
