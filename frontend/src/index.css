@@ -484,17 +484,23 @@
 }
 
 .projects-section {
-  padding-bottom: 40px;
-  /* margin-left: -150px; */
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 40px;
+  width: 100%;
+  justify-content: center;
 }
 
 .projects-section h2 {
-  margin-top: 80px;
+  margin-top: 50px;
   font-size: 24px;
-  font-weight: 600;
-  padding-bottom: 20px;
+  font-weight: 600; 
 }
 
+.sort-box {
+  margin-top: -10px;
+}
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 

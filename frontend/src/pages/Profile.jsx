@@ -1,5 +1,6 @@
 
 
+
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import InboxIcon from '../assets/inbox-icon.svg';
@@ -11,6 +12,7 @@ import { getProjects } from '../hooks/apiHook.js';
 function Profile({ user }) {
   const [projects, setProjects] = useState([]);
   const [isSettingsMenuOpen, setIsSettingsMenuOpen] = useState(false);
+  const [sortOrder, setSortOrder] = useState('desc');
 
   const toggleSettingsMenu = () => {
     setIsSettingsMenuOpen(!isSettingsMenuOpen);
@@ -55,6 +57,15 @@ function Profile({ user }) {
  
   const userImage = user.userImage || ProfileIcon;
   const userName = `${user.firstName || "New"} ${user.lastName || "User"}`;
+  const handleSortChange = (event) => {
+    setSortOrder(event.target.value);
+  };
+
+  const sortedProjects = [...projects].sort((a, b) => {
+    const dateA = new Date(a.createdAt);
+    const dateB = new Date(b.createdAt);
+    return sortOrder === 'asc' ? dateA - dateB : dateB - dateA;
+  });
 
   return (
     <div className="profile h-screen">
@@ -86,7 +97,8 @@ function Profile({ user }) {
                 <span>Edit Profile</span>
               </button>
             </Link>
-            <div onClick={toggleSettingsMenu} className="relative inline-block text-left group">
+            {/* SETTINGS  */}
+            <div onClick={toggleSettingsMenu} className="relative inline-block text-left group ">
               <button className="profile-button">
                 <img
                   src={SettingsIcon}
@@ -97,7 +109,7 @@ function Profile({ user }) {
                 <span>My Settings</span>
               </button>
               {isSettingsMenuOpen && (
-                <div className="absolute left-0 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                <div className="absolute  left-0 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                   <div>
                     <Link
                       to="/email"
@@ -125,7 +137,8 @@ function Profile({ user }) {
               )}
             </div>
           </div>
-          <div className="mt-8">
+          {/* SETTINGS  */}
+          <div className="mt-20">       {/* Added div to center User and About section  */}
             <div className="user-name">
               <h2 className="font-semibold">{userName}</h2>
             </div>
@@ -139,11 +152,20 @@ function Profile({ user }) {
         </div>
       </div>
 
-      <div className="projects-section mt-8 min-h-[200px] relative">
-        <h2 className="text-xl font-semibold mb-4">My Projects</h2>
+      <div className="projects-section mt-20 min-h-[200px] relative">
+        <h2 className="text-xl font-semibold">My Projects</h2>
+        
+        <div className="sort-box">
+          <label htmlFor="sortOrder" className="mr-2">Sort by date:</label>
+          <select id="sortOrder" value={sortOrder} onChange={handleSortChange} className="p-2 border rounded">
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+          </select>
+        </div>
+
         <div className="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {projects.length > 0 ? (
-            projects.slice(0, 3).map((project) => (
+            sortedProjects.slice(0, 3).map((project) => (
               <Link key={project._id} to={`/projects/${project._id}`} className="project-card-link">
                 <div className="project-card bg-white shadow-md rounded-lg overflow-hidden">
                   <img src={project.coverImage} alt={project.title} className="project-image w-full h-48 object-cover" />
@@ -160,8 +182,8 @@ function Profile({ user }) {
           )}
         </div>
         {projects.length > 0 && (
-          <div className="see-more-container mt-12">
-            <Link to="/seemoreprojects" className="see-more-link text-blue-500 hover:underline text-center block">
+          <div className="see-more-container mb-12">
+            <Link to="/myprojects" className="see-more-link text-blue-500 hover:underline text-center block">
               See more projects
             </Link>
           </div>

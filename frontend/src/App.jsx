@@ -17,6 +17,7 @@ import Discussion from './pages/Discussion.jsx'
 import EditPassword from './pages/SettingsPassword.jsx'
 import EditEmail from './pages/SettingsEmail.jsx'
 import DeleteAccount from './pages/SettingsDeleteAccount.jsx'
+import MyProjects from './pages/MyProjects.jsx'
 
 function App() {
  
@@ -58,6 +59,7 @@ function App() {
           <Route path="/discussion" element = {<Discussion user={user} setUser={setUser}/>} />
           <Route path="/about" element = {<About />} />
           <Route path="/profile" element = {user ? <Profile user={user} /> : <Navigate to="/login" />} />
+          <Route path="/myprojects" element = {user ? <MyProjects user={user} /> : <Navigate to="/login" />} />
           <Route path="/login" element = {<Login setUser={setUser} />} />
           <Route path="/register" element = {<Register setUser={setUser} />} />
           <Route path="/editprofile" element = { user ? <EditProfile user={user} setUser={setUser} /> : <Navigate to="login" />} />
