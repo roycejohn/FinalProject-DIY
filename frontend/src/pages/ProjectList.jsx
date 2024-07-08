@@ -2,11 +2,47 @@ import { useEffect, useState } from 'react';
 import { getProjects } from '../hooks/apiHook.js';
 import { Link } from 'react-router-dom';
 
-const ProjectList = () => {
+const ProjectList = (user) => {
   const [projects, setProjects] = useState([]);
   const [filteredProjects, setFilteredProjects] = useState([]);
   const [activeCategory, setActiveCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
+
+  useEffect(() => {
+    const fetchUserProjects = async () => {
+      try {
+        const allProjects = await getProjects();
+        const userProjects = allProjects.filter(project => project.username === user.username);
+        setProjects(userProjects);
+      } catch (error) {
+        console.error('Error fetching user projects:', error);
+      }
+    };
+    fetchUserProjects();
+  }, [user.username]);
+
+  const formatRelativeTime = (dateTime) => {
+    const date = new Date(dateTime);
+    const now = new Date();
+    const diffInSeconds = Math.floor((now - date) / 1000);
+  
+    const units = [
+      { name: "year", seconds: 31536000 },
+      { name: "month", seconds: 2592000 },
+      { name: "day", seconds: 86400 },
+      { name: "hour", seconds: 3600 },
+      { name: "minute", seconds: 60 },
+      { name: "second", seconds: 1 },
+    ];
+  
+    for (const unit of units) {
+      const interval = Math.floor(diffInSeconds / unit.seconds);
+      if (interval >= 1) {
+        return interval === 1 ? `a ${unit.name} ago` : `${interval} ${unit.name}s ago`;
+      }
+    }
+    return "just now";
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -80,12 +116,21 @@ const ProjectList = () => {
         {filteredProjects.map((project) => (
           <div key={project._id} className="bg-white rounded-lg shadow-md p-6">
             {project.coverImage && (
-              <img src={project.coverImage} alt={project.title} className="w-full h-48 object-cover rounded-t-lg mb-4" />
+              <img
+                src={project.coverImage}
+                alt={project.title}
+                className="w-full h-48 object-cover rounded-t-lg mb-4"
+              />
             )}
-            <h2 className="text-xl font-semibold mb-2">{project.title}</h2>
-            <p className="text-gray-700 mb-2">{project.description}</p>
-            <Link to={`/projects/${project._id}`} className="text-gray-700 hover:underline">
-              See Details
+            <div className="p-1">
+              <h3 className="text-lg font-semibold">{project.title}</h3>
+              <div className='text-sm'>
+                <p className="text-gray-500">created by: {project.username}</p>
+                <p className="text-gray-500">created on: {formatRelativeTime(project.createdAt)}</p>
+              </div>
+            </div>
+            <Link to={`/projects/${project._id}`} className="text-blue-500 hover:underline">
+              View Details
             </Link>
           </div>
         ))}
