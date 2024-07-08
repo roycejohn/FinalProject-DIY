@@ -204,26 +204,28 @@
   margin-bottom: 60px;
   margin-left: 80px;
   margin-right: 80px;
+  padding: 0px 80px 0px 80px;
 }
 
 .most-popular h1 {
   font-size: 32px;
   font-weight: 600;
   margin-bottom: 20px;
-  margin-left: 80px;
-  margin-right: 80px;
 }
 
 .popular-cards {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 0px 20px 0px 20px;
   display: flex;
-  justify-content: space-between; 
-  margin-left: 80px;
-  margin-right: 80px;
+  justify-content: space-between;
 }
 
 .popular-card {
-  width: 30%; 
-  margin-bottom: 20px; 
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 .popular-image {
@@ -231,8 +233,9 @@
 }
 
 .popular-image img {
-  width: 100%;
-  height: auto;
+  width: 80%;
+  border-radius: 12px;
+  height: 70%;
   object-fit: cover;
 }
 
