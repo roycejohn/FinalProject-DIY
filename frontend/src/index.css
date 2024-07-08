@@ -485,10 +485,11 @@
 
 .projects-section {
   padding-bottom: 40px;
+  /* margin-left: -150px; */
 }
 
 .projects-section h2 {
-  margin-top: 20px;
+  margin-top: 80px;
   font-size: 24px;
   font-weight: 600;
   padding-bottom: 20px;
