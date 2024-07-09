@@ -4,9 +4,6 @@ import PImage1 from "../assets/p1.png";
 import PImage2 from "../assets/p2.png";
 import PImage3 from "../assets/p3.png";
 import PImage4 from "../assets/p4.png";
-import PopularImage1 from "../assets/popular1.png";
-import PopularImage2 from "../assets/popular2.png";
-import PopularImage3 from "../assets/popular3.png";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getProjects, getMostPopularProjects } from "../hooks/apiHook.js";
@@ -115,30 +112,26 @@ function Home() {
 
       {/* MOST POPULAR */}
 
-      <div className='most-popular '>
-        <h1>Most Popular</h1>
+      <div className="most-popular">
+  <h1>Most Popular</h1>
 
-        <div className='popular-cards '>
-          {/* Card 1 */}
-
-          {mostPopular.map((popular) => (
-            <div key={popular._id} className=''>
-              <div className='popular-card   '>
-                <div className='popular-image'>
-                  <img src={popular.coverImage} alt='Project 1' />
-                </div>
-                <div className='popular-details'>
-                  <h3>{popular.title}</h3>
-                  <p>{popular.description}</p>
-                  <a href='#' className='see-more'>
-                    See More...
-                  </a>
-                </div>
-              </div>
-            </div>
-          ))}
+  <div className="popular-cards">
+    {mostPopular.map((popular) => (
+      <div key={popular._id} className="popular-card">
+        <div className="popular-image">
+          <img src={popular.coverImage} alt={popular.title} />
+        </div>
+        <div className="popular-details">
+          <h3>{popular.title}</h3>
+          <p>{popular.description}</p>
+          <a href="#" className="see-more">
+            See More...
+          </a>
         </div>
       </div>
+    ))}
+  </div>
+</div>
 
       {/* END  OF MOST POPULAR */}
 
