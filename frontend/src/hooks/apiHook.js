@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// const API_URL = 'http://localhost:8000/api/projects';
-const API_URL ='https://diy-server.onrender.com/api/projects';
+const API_URL = 'http://localhost:8000/api/projects';
+// const API_URL ='https://diy-server.onrender.com/api/projects';
 
 export const getProjects = async () => {
   try {
@@ -44,6 +44,7 @@ export const updateProject = async (projectId, updatedProject) => {
     const response = await axios.put(`${API_URL}/${projectId}`, updatedProject);
     return response.data;
   } catch (error) {
+    console.error('Error updating project:', error);
     throw error;
   }
 };
@@ -58,3 +59,14 @@ export const getMostPopularProjects = async () => {
     throw error;
   }
 }
+
+
+export const deleteProject = async (projectId) => {
+  try {
+    const response = await axios.delete(`${API_URL}/${projectId}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error deleting project ${projectId}:`, error);
+    throw error;
+  }
+};
