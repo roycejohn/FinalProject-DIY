@@ -1,15 +1,27 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { SearchIcon } from "@heroicons/react/outline";
 import NavbarLogo from "../assets/navbar-logo.svg";
 import ProfileIcon from "../assets/profile-icon.svg";
 import PlusIcon from "../assets/plus-icon.svg";
 import ProjectForm from "../pages/ProjectForm";
+import { useSearch,  } from "../context/SearchContext.jsx";
 
 const Header = ({ user, setUser }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  // added from cearch context
+  const { headerSearchQuery, setHeaderSearchQuery, setSearchQuery } =
+    useSearch();
+  // naviget used to redirec to projectList
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    setHeaderSearchQuery(e.target.value);
+    setSearchQuery(e.target.value);
+    navigate("/projects");
+  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -38,6 +50,8 @@ const Header = ({ user, setUser }) => {
           <div className="flex-grow mx-10 relative">
             <input
               type="text"
+              value={headerSearchQuery}  // changed to update filter in project list
+              onChange={handleSearch}
               placeholder="Search..."
               className="w-full px-2 py-2 bg-white rounded-xl border border-gray-700 focus:outline-none focus:ring focus:border-blue-300 pl-8"
             />
@@ -85,7 +99,7 @@ const Header = ({ user, setUser }) => {
                 </button>
                 <div onClick={toggleProfileMenu}>
                   {" "}
-    {/* ADDED so when clicking on username too will toggle menu */}
+                  {/* ADDED so when clicking on username too will toggle menu */}
                   <div className="relative flex items-center ">
                     <img
                       src={ProfileIcon}

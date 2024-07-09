@@ -1,31 +1,47 @@
-import { useEffect, useState } from 'react';
-import { getProjects } from '../hooks/apiHook.js';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { getProjects } from "../hooks/apiHook.js";
+import { Link } from "react-router-dom";
+import { useSearch } from "../context/SearchContext.jsx";
 
 const ProjectList = (user) => {
   const [projects, setProjects] = useState([]);
-  const [filteredProjects, setFilteredProjects] = useState([]);
-  const [activeCategory, setActiveCategory] = useState('All');
-  const [searchQuery, setSearchQuery] = useState('');
-
+  const [activeCategory, setActiveCategory] = useState("All");
+   // added for  Context
+   const { searchQuery, setSearchQuery, filteredProjects, setFilteredProjects } =
+   useSearch();
+  // const [filteredProjects, setFilteredProjects] = useState([]);
+  // const [searchQuery, setSearchQuery] = useState('');
+ 
   useEffect(() => {
     const fetchUserProjects = async () => {
       try {
         const allProjects = await getProjects();
-        const userProjects = allProjects.filter(project => project.username === user.username);
+        const userProjects = allProjects.filter(
+          (project) => project.username === user.username
+        );
         setProjects(userProjects);
+        setFilteredProjects(userProjects); 
       } catch (error) {
-        console.error('Error fetching user projects:', error);
+        console.error("Error fetching user projects:", error);
       }
     };
     fetchUserProjects();
-  }, [user.username]);
+  }, [user.username, setFilteredProjects]);
+
+  useEffect(() => {
+    const filtered = projects.filter(
+      (project) =>
+        project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        project.description.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredProjects(filtered);
+  }, [searchQuery, projects, setFilteredProjects]);
 
   const formatRelativeTime = (dateTime) => {
     const date = new Date(dateTime);
     const now = new Date();
     const diffInSeconds = Math.floor((now - date) / 1000);
-  
+
     const units = [
       { name: "year", seconds: 31536000 },
       { name: "month", seconds: 2592000 },
@@ -34,11 +50,13 @@ const ProjectList = (user) => {
       { name: "minute", seconds: 60 },
       { name: "second", seconds: 1 },
     ];
-  
+
     for (const unit of units) {
       const interval = Math.floor(diffInSeconds / unit.seconds);
       if (interval >= 1) {
-        return interval === 1 ? `a ${unit.name} ago` : `${interval} ${unit.name}s ago`;
+        return interval === 1
+          ? `a ${unit.name} ago`
+          : `${interval} ${unit.name}s ago`;
       }
     }
     return "just now";
@@ -51,17 +69,19 @@ const ProjectList = (user) => {
         setProjects(result);
         setFilteredProjects(result);
       } catch (error) {
-        console.error('Error fetching projects:', error);
+        console.error("Error fetching projects:", error);
       }
     };
     fetchData();
   }, []);
 
   const filterProjects = (category) => {
-    if (category === 'All') {
+    if (category === "All") {
       setFilteredProjects(projects);
     } else {
-      const filtered = projects.filter(project => project.category === category);
+      const filtered = projects.filter(
+        (project) => project.category === category
+      );
       setFilteredProjects(filtered);
     }
     setActiveCategory(category);
@@ -76,6 +96,10 @@ const ProjectList = (user) => {
     setFilteredProjects(filtered);
   };
 
+/*   const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+  }; */
+
   return (
     <div className="container mx-auto max-w-5xl p-4">
       <h1 className="text-2xl font-bold mb-4">Explore Projects</h1>
@@ -88,26 +112,42 @@ const ProjectList = (user) => {
           className="mr-4 px-3 py-1 border rounded focus:outline-none"
         />
         <button
-          className={`mr-4 px-3 py-1 rounded focus:outline-none ${activeCategory === 'All' ? 'bg-gray-200 text-gray-700' : 'bg-white text-gray-700'}`}
-          onClick={() => filterProjects('All')}
+          className={`mr-4 px-3 py-1 rounded focus:outline-none ${
+            activeCategory === "All"
+              ? "bg-gray-200 text-gray-700"
+              : "bg-white text-gray-700"
+          }`}
+          onClick={() => filterProjects("All")}
         >
           All
         </button>
         <button
-          className={`mr-4 px-3 py-1 rounded-md focus:outline-none ${activeCategory === 'General' ? 'bg-gray-200 text-gray-700' : 'bg-white text-gray-700'}`}
-          onClick={() => filterProjects('General')}
+          className={`mr-4 px-3 py-1 rounded-md focus:outline-none ${
+            activeCategory === "General"
+              ? "bg-gray-200 text-gray-700"
+              : "bg-white text-gray-700"
+          }`}
+          onClick={() => filterProjects("General")}
         >
           General
         </button>
         <button
-          className={`mr-4 px-3 py-1 rounded-md focus:outline-none ${activeCategory === 'Cooking' ? 'bg-gray-200 text-gray-700' : 'bg-white text-gray-700'}`}
-          onClick={() => filterProjects('Cooking')}
+          className={`mr-4 px-3 py-1 rounded-md focus:outline-none ${
+            activeCategory === "Cooking"
+              ? "bg-gray-200 text-gray-700"
+              : "bg-white text-gray-700"
+          }`}
+          onClick={() => filterProjects("Cooking")}
         >
           Cooking
         </button>
         <button
-          className={`px-3 py-1 rounded-md focus:outline-none ${activeCategory === 'Workshop' ? 'bg-gray-200 text-gray-700' : 'bg-white text-gray-700'}`}
-          onClick={() => filterProjects('Workshop')}
+          className={`px-3 py-1 rounded-md focus:outline-none ${
+            activeCategory === "Workshop"
+              ? "bg-gray-200 text-gray-700"
+              : "bg-white text-gray-700"
+          }`}
+          onClick={() => filterProjects("Workshop")}
         >
           Workshop
         </button>
@@ -124,12 +164,17 @@ const ProjectList = (user) => {
             )}
             <div className="p-1">
               <h3 className="text-lg font-semibold">{project.title}</h3>
-              <div className='text-sm'>
+              <div className="text-sm">
                 <p className="text-gray-500">created by: {project.username}</p>
-                <p className="text-gray-500">created on: {formatRelativeTime(project.createdAt)}</p>
+                <p className="text-gray-500">
+                  created on: {formatRelativeTime(project.createdAt)}
+                </p>
               </div>
             </div>
-            <Link to={`/projects/${project._id}`} className="text-blue-500 hover:underline">
+            <Link
+              to={`/projects/${project._id}`}
+              className="text-blue-500 hover:underline"
+            >
               View Details
             </Link>
           </div>
