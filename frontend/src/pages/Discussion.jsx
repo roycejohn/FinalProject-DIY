@@ -39,12 +39,8 @@ const Discussion = ({ user }) => {
   };
 
   const handlePostComment = () => {
-    
-      if (!user) {
-
-        toast.error('Error: You must be logged in to post a comment.');
-    
-     
+    if (!user) {
+      toast.error('Error: You must be logged in to post a comment.');
       setComment(''); // Clear the textarea
       return;
     }
@@ -84,6 +80,7 @@ const Discussion = ({ user }) => {
       const newComment = {
         text: comment,
         username: user.username,
+        userImage: user.userImage || PersonIcon, // Include the user's image URL
         replies: [],
         likes: 0,
         createdAt: new Date(),
@@ -171,6 +168,7 @@ const Discussion = ({ user }) => {
     const newReply = {
       text: replyText,
       username: user.username,
+      userImage: user.userImage, // Include the user's image URL in the reply
       createdAt: new Date(),
     };
 
@@ -200,7 +198,7 @@ const Discussion = ({ user }) => {
         <div className='bg-white shadow-md rounded-lg p-6 mb-8'>
           <div className='flex items-center mb-4'>
             <img
-              src={PersonIcon}
+              src={user && user.userImage ? user.userImage : PersonIcon}
               alt={user ? user.username : 'User Icon'}
               className='w-12 h-12 rounded-full mr-4'
             />
@@ -243,7 +241,7 @@ const Discussion = ({ user }) => {
             <div key={index} className='bg-gray-100 p-4 rounded mb-2 shadow'>
               <div className='flex items-center mb-2'>
                 <img
-                  src={PersonIcon}
+                  src={comment.userImage ? comment.userImage : PersonIcon}
                   alt={comment.username}
                   className='w-8 h-8 rounded-full mr-4'
                 />
@@ -252,8 +250,17 @@ const Discussion = ({ user }) => {
                   <p>{comment.text}</p>
                   {comment.replies && comment.replies.map((reply, i) => (
                     <div key={i} className='ml-8 mt-2'>
-                      <h2 className='text-md font-semibold'>{reply.username}</h2>
-                      <p>{reply.text}</p>
+                      <div className='flex items-center mb-2'>
+                        <img
+                          src={reply.userImage ? reply.userImage : PersonIcon}
+                          alt={reply.username}
+                          className='w-6 h-6 rounded-full mr-4'
+                        />
+                        <div>
+                          <h2 className='text-sm font-semibold'>{reply.username}</h2>
+                          <p>{reply.text}</p>
+                        </div>
+                      </div>
                     </div>
                   ))}
                 </div>
