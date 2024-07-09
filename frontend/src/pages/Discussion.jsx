@@ -1,6 +1,8 @@
-import PersonIcon from "../assets/personicon.jpg";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import PersonIcon from '../assets/personicon.jpg';
 
 const Discussion = ({ user }) => {
   const [comment, setComment] = useState('');
@@ -18,6 +20,7 @@ const Discussion = ({ user }) => {
       })
       .catch(error => {
         console.error('Error fetching registered users:', error);
+        toast.error('Error fetching registered users.');
       });
 
     // Fetch the list of discussions when the component mounts
@@ -27,6 +30,7 @@ const Discussion = ({ user }) => {
       })
       .catch(error => {
         console.error('Error fetching discussions:', error);
+        toast.error('Error fetching discussions.');
       });
   }, []);
 
@@ -35,8 +39,12 @@ const Discussion = ({ user }) => {
   };
 
   const handlePostComment = () => {
-    if (!user) {
-      alert('Error: You must be logged in to post a comment.');
+    
+      if (!user) {
+
+        toast.error('Error: You must be logged in to post a comment.');
+    
+     
       setComment(''); // Clear the textarea
       return;
     }
@@ -45,7 +53,7 @@ const Discussion = ({ user }) => {
     const isValidUser = registeredUsers.some(registeredUser => registeredUser.username === user.username);
 
     if (!isValidUser) {
-      alert('Error: Only valid users can have discussions.');
+      toast.error('Error: Only valid users can have discussions.');
       setComment(''); // Clear the textarea
       return;
     }
@@ -65,9 +73,11 @@ const Discussion = ({ user }) => {
           setComments(updatedComments);
           setEditCommentIndex(null);
           setComment(''); // Clear the textarea
+          toast.success('Comment updated successfully.');
         })
         .catch(error => {
           console.error('Error updating comment:', error);
+          toast.error('Error updating comment.');
         });
     } else {
       // Add a new comment
@@ -83,9 +93,11 @@ const Discussion = ({ user }) => {
         .then(response => {
           setComments([...comments, response.data]);
           setComment(''); // Clear the textarea
+          toast.success('Comment posted successfully.');
         })
         .catch(error => {
           console.error('Error posting comment:', error);
+          toast.error('Error posting comment.');
         });
     }
   };
@@ -100,9 +112,11 @@ const Discussion = ({ user }) => {
     axios.delete(`https://diy-server.onrender.com/discussions/${commentToDelete._id}`)
       .then(() => {
         setComments(comments.filter((_, i) => i !== index));
+        toast.success('Comment deleted successfully.');
       })
       .catch(error => {
         console.error('Error deleting comment:', error);
+        toast.error('Error deleting comment.');
       });
   };
 
@@ -116,7 +130,7 @@ const Discussion = ({ user }) => {
 
     // Check if the current user is the author of the comment
     if (commentToLike.username === user.username) {
-      alert('Error: You cannot like your own comment.');
+      toast.error('Error: You cannot like your own comment.');
       return;
     }
 
@@ -132,9 +146,11 @@ const Discussion = ({ user }) => {
         );
         setComments(updatedComments);
         setLikedComments({ ...likedComments, [commentToLike._id]: true });
+        toast.success('Comment liked successfully.');
       })
       .catch(error => {
         console.error('Error liking comment:', error);
+        toast.error('Error liking comment.');
       });
   };
 
@@ -143,7 +159,7 @@ const Discussion = ({ user }) => {
 
     // Check if the current user is the author of the comment
     if (commentToReply.username === user.username) {
-      alert('Error: You cannot reply to your own comment.');
+      toast.error('Error: You cannot reply to your own comment.');
       return;
     }
 
@@ -169,9 +185,11 @@ const Discussion = ({ user }) => {
           i === index ? response.data : c
         );
         setComments(updatedComments);
+        toast.success('Reply posted successfully.');
       })
       .catch(error => {
         console.error('Error replying to comment:', error);
+        toast.error('Error replying to comment.');
       });
   };
 
@@ -196,11 +214,11 @@ const Discussion = ({ user }) => {
             placeholder='Type here...'
             value={comment}
             onChange={handleCommentChange}></textarea>
-          <p className='text-sm text-gray-500 mb-2'>
+          <p className='text-sm text-gray-600 mb-2'>
             Please feel free to share your ideas and thoughts.
           </p>
           <div className='flex justify-between'>
-            <button className='bg-blue-500 text-white rounded p-2 mt-2'
+            <button className='bg-gray-900 text-white rounded p-2 mt-2'
               onClick={() => {
                 setComment('');
                 setEditCommentIndex(null);
@@ -208,10 +226,11 @@ const Discussion = ({ user }) => {
               }}>
               Cancel
             </button>
-            <button className='bg-blue-500 text-white rounded p-2 mt-2' onClick={handlePostComment}>
+            <button className='bg-gray-900 text-white rounded p-2 mt-2' onClick={handlePostComment}>
               {editCommentIndex !== null ? 'Update' : 'Post'}
             </button>
           </div>
+          <ToastContainer />
         </div>
 
         <div>
@@ -242,7 +261,7 @@ const Discussion = ({ user }) => {
               <div className='flex justify-between items-center mt-4'>
                 <div className='flex space-x-4'>
                   <button
-                    className={`text-blue-500 hover:text-blue-700 flex items-center ${likedComments[comment._id] ? 'text-gray-400' : ''}`}
+                    className={`text-gray-900 hover:text-gray-400 flex items-center ${likedComments[comment._id] ? 'text-gray-600' : ''}`}
                     onClick={() => handleLikeComment(index)}
                     disabled={likedComments[comment._id]}
                   >
@@ -250,7 +269,7 @@ const Discussion = ({ user }) => {
                     <span className='ml-1'>Like ({comment.likes})</span>
                   </button>
                   <button
-                    className='text-blue-500 hover:text-blue-700 flex items-center'
+                    className='text-gray-900 hover:text-gray-400 flex items-center'
                     onClick={() => handlePostReply(index)}
                   >
                     <i className='fas fa-reply'></i>
@@ -258,11 +277,11 @@ const Discussion = ({ user }) => {
                   </button>
                 </div>
                 <div className='flex space-x-4'>
-                  <button className='text-yellow-500 hover:text-yellow-700 flex items-center' onClick={() => handleEditComment(index)}>
+                  <button className='text-gray-900 hover:text-yellow-700 flex items-center' onClick={() => handleEditComment(index)}>
                     <i className='fas fa-edit'></i>
                     <span className='ml-1'>Edit</span>
                   </button>
-                  <button className='text-red-500 hover:text-red-700 flex items-center' onClick={() => handleDeleteComment(index)}>
+                  <button className='text-gray-900 hover:text-red-700 flex items-center' onClick={() => handleDeleteComment(index)}>
                     <i className='fas fa-trash'></i>
                     <span className='ml-1'>Delete</span>
                   </button>

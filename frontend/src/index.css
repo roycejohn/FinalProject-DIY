@@ -6,7 +6,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box ;
-  color: #171818;
+  color: #343434;
   font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -22,7 +22,6 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: #f2f2f2;
 }
 
 .hero-image {
@@ -43,7 +42,6 @@
 .hero-text h1 {
   font-weight: 600;
   font-size: 40px;
-  color: #171818;
   padding-bottom: 20px;
 }
 
@@ -51,7 +49,6 @@
   font-weight: 200;
   font-size: 24px;
   padding-bottom: 80px;
-  color: #171818;
 }
 
 @media (max-width: 768px) {
@@ -83,6 +80,7 @@
   font-size: 32px;
   font-weight: 600;
   margin-bottom: 20px;
+  padding-top: 20px;
 }
 
 .project-cards {
@@ -108,7 +106,7 @@
 }
 
 .project-image {
-  width: 180px; 
+  width: 200px; 
   height: 120px; 
   margin-right: 20px; 
 }
@@ -131,8 +129,8 @@
 
 .project-details p {
   font-size: 16px;
-  line-height: 1.6;
-  margin: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .right .project-card.big .project-image {
@@ -157,7 +155,6 @@
   font-size: 12px;
   font-weight: 300;
   text-decoration: underline;
-  color: #171818;
   transition: background-color 0.3s;
 }
 
@@ -200,55 +197,68 @@
 /*Most Popular Projects Section starts*/
 
 .most-popular {
-  margin-top: 60px;
-  margin-bottom: 60px;
-  margin-left: 80px;
-  margin-right: 80px;
+  margin: 80px;
+  padding: 0px 80px 0px 80px;
+  align-items: center;
 }
 
 .most-popular h1 {
   font-size: 32px;
   font-weight: 600;
   margin-bottom: 20px;
-  margin-left: 80px;
-  margin-right: 80px;
 }
 
 .popular-cards {
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
   display: flex;
-  justify-content: space-between; 
-  margin-left: 80px;
-  margin-right: 80px;
+  flex-wrap: wrap; 
+  justify-content: space-around;
 }
 
 .popular-card {
-  width: 30%; 
-  margin-bottom: 20px; 
+  width: calc(40% - 80px); 
+  margin-bottom: 80px;
 }
 
 .popular-image {
   width: 100%;
+  height: 50%; 
 }
 
 .popular-image img {
-  width: 100%;
-  height: auto;
+  margin-top:20px;
+  margin-bottom: 0px;
+  width: 90%;
+  height: 90%;
+  border-radius: 12px;
   object-fit: cover;
-}
-
-.popular-details {
-  padding: 20px;
 }
 
 .popular-details h3 {
   font-size: 18px;
   font-weight: 600;
-  margin-bottom: 10px;
 }
 
 .popular-details p {
-  font-size: 16px;
+  font-size: 14px;
+  margin-bottom: 20px;
 }
+
+
+@media screen and (max-width: 768px) {
+  .most-popular {
+    margin: 40px;
+    padding: 0px 40px 0px 40px;
+  }
+
+  .popular-card {
+    width: calc(100% - 40px); 
+    margin-bottom: 40px;
+  }
+}
+
 
 /*Most Popular Projects Section ends*/
 
@@ -256,7 +266,6 @@
 
 .join {
   display: flex;
-  margin-top: 40px;
   margin-left: 80px;
   margin-bottom: 40px;
   width: 100%;
@@ -332,7 +341,6 @@
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #FFFFFF;
-  color: #171818;
   text-align: left;
 }
 
@@ -445,7 +453,7 @@
   padding: 8px 20px;
   font-size: 12px;
   font-weight: lighter;
-  color: #171818;
+  color: #343434;
   background-color: #ffffff;
   text-decoration: none;
   border: 1px solid #989898;
@@ -532,13 +540,14 @@
 .see-more-container {
   margin-bottom: 40px;
   padding-bottom: 40px;
-  text-align: right;
 }
 
 .see-more-link {
+  margin-top:20px;
   font-size: 14px;
   font-weight: 700;
-  color: #171818;
+  color: #343434;
+  text-align: right;
   text-decoration: underline;
   transition: background-color 0.3s;
 
