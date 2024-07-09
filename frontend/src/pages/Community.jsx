@@ -25,7 +25,7 @@ function Community() {
       <div className='my-8 flex justify-center'>
         <input
           type='text'
-          className='w-full max-w-lg px-4 py-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-600'
+          className='w-full max-w-lg px-4 py-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:gray-400'
           placeholder='Search the community'
         />
         {/*Communities */}
@@ -47,8 +47,8 @@ function Community() {
               <h3 className='text-xl font-semibold'>Introduce Yourself</h3>
              
             </div>
-            <p className='text-gray-600'>
-               <Link to='/discussion' className='text-blue-500 underline'>
+            <p className='text-gray-900'>
+               <Link to='/discussion' className='text-gray-600 underline'>
                 Please introduce and have a discussion about DIY project.
               </Link>
              
@@ -60,8 +60,8 @@ function Community() {
                 className='w-10 h-10 rounded-full mr-3'
               />
               <div>
-                <p className='text-gray-700 font-medium'>Angelika Müller</p>
-                <div className='flex items-center text-gray-500'>
+                <p className='text-gray-900 font-medium'>Angelika Müller</p>
+                <div className='flex items-center text-gray-600'>
                   <span className='mr-2'>102</span>
                   <span className='mr-2'>💬</span>
                   <span>64</span>
@@ -83,8 +83,8 @@ function Community() {
               {" "}
               Share Your Thoughts & Ideas
             </h3>
-            <p className='text-gray-600'>
-               <Link to='/discussion' className='text-blue-500 underline'>
+            <p className='text-gray-900'>
+               <Link to='/discussion' className='text-gray-600 underline'>
               Please share your thoughts and ideas related to DIY project!
                </Link>
             </p>
@@ -95,8 +95,8 @@ function Community() {
                 className='w-10 h-10 rounded-full mr-3'
               />
               <div>
-                <p className='text-gray-700 font-medium'>Alex Hills</p>
-                <div className='flex items-center text-gray-500'>
+                <p className='text-gray-900 font-medium'>Alex Hills</p>
+                <div className='flex items-center text-gray-600'>
                   <span className='mr-2'>102</span>
                   <span className='mr-2'>💬</span>
                   <span>64</span>
@@ -116,8 +116,8 @@ function Community() {
           />
           <div className='p-4 w-1/2'>
             <h3 className='text-xl font-semibold'>Q&A Discussion</h3>
-            <p className='text-gray-600'>
-                <Link to='/discussion' className='text-blue-500 underline'>
+            <p className='text-gray-900'>
+                <Link to='/discussion' className='text-gray-600 underline'>
               Please get clarified with your questions related to DIY project.
               </Link>
             </p>
@@ -128,8 +128,8 @@ function Community() {
                 className='w-10 h-10 rounded-full mr-3'
               />
               <div>
-                <p className='text-gray-700 font-medium'>Kathrine Hartmann</p>
-                <div className='flex items-center text-gray-500'>
+                <p className='text-gray-900 font-medium'>Kathrine Hartmann</p>
+                <div className='flex items-center text-gray-600'>
                   <span className='mr-2'>102</span>
                   <span className='mr-2'>💬</span>
                   <span>64</span>
